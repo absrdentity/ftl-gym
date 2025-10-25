@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block head %}
-    <title>FTL GYM - Membership</title>
+    <title>EXODUS GYM - Membership</title>
 {% endblock %}
 
 {% block body %}
@@ -53,7 +53,7 @@
   <body>
     <header class="main-header">
       <div class="container header-content">
-        <a href="/" class="logo-text">FTL GYM</a>
+        <a href="/" class="logo-text">EXODUS GYM</a>
 
         <nav class="main-nav">
           <ul>
@@ -88,7 +88,7 @@
               <li>❌ Akses Kelas Reguler</li>
               <li>❌ Akses 24/7</li>
             </ul>
-            <a href="/join" class="btn-join" style="margin-left: 0"
+            <a href="/join?package=basic" class="btn-join" style="margin-left: 0"
               >Pilih Paket</a
             >
           </div>
@@ -106,7 +106,7 @@
               <li>❌ Akses 24/7</li>
             </ul>
             <a
-              href="/join"
+              href="/join?package=standard"
               class="btn-join"
               style="margin-left: 0; background: #0056b3"
               >Pilih Paket</a
@@ -122,7 +122,7 @@
               <li>✔ Akses Kelas Reguler & Pilates+</li>
               <li>✔ **Akses Penuh 24/7**</li>
             </ul>
-            <a href="/join" class="btn-join" style="margin-left: 0"
+            <a href="/join?package=ultra" class="btn-join" style="margin-left: 0"
               >Pilih Paket</a
             >
           </div>
@@ -139,7 +139,7 @@
         margin-top: 40px;
       "
     >
-      <p>&copy; 2025 FTL GYM. All rights reserved.</p>
+      <p>&copy; 2025 EXODUS GYM. All rights reserved.</p>
     </footer>
 {% endblock %}
 

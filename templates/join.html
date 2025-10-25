@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block head %}
-  <title>FTL GYM - Join Now</title>
+  <title>EXODUS GYM - Join Now</title>
 {% endblock %}
 
 {% block body %}
@@ -52,7 +52,7 @@
   <body>
     <header class="main-header">
       <div class="container header-content">
-        <a href="/" class="logo-text">FTL GYM</a>
+        <a href="/" class="logo-text">EXODUS GYM</a>
 
         <nav class="main-nav">
           <ul>
@@ -103,9 +103,9 @@
               <label for="package">Pilihan Paket Keanggotaan</label>
               <select id="package" name="package" required>
                 <option value="">-- Pilih Paket --</option>
-                <option value="basic">Basic Plan (Rp 300K/bln)</option>
-                <option value="standard">Standard Plan (Rp 550K/bln)</option>
-                <option value="ultra">Ultra 24/7 (Rp 700K/bln)</option>
+                <option value="basic" {% if selected_package == 'basic' %}selected{% endif %}>Basic Plan (Rp 300K/bln)</option>
+                <option value="standard" {% if selected_package == 'standard' %}selected{% endif %}>Standard Plan (Rp 550K/bln)</option>
+                <option value="ultra"{% if selected_package == 'ultra' %}selected{% endif %}>Ultra 24/7 (Rp 700K/bln)</option>
               </select>
             </div>
 
@@ -123,7 +123,7 @@
         padding: 15px 0;
       "
     >
-      <p>&copy; 2025 FTL GYM. All rights reserved.</p>
+      <p>&copy; 2025 EXODUS GYM. All rights reserved.</p>
     </footer>
 {% endblock %}
 
