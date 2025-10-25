@@ -16,8 +16,18 @@ mysql = MySQL(app)
 def home():
     return render_template('home.html')
 
-@app.route('/join', methods=['GET'])
+@app.route('/join', methods=['GET', 'POST'])
 def join_membership():
+    if request.method == 'POST' and 'name' in request.form and 'email' and 'password' and 'phone' in request.form:
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        phone = request.form['phone']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('INSERT INTO members VALUES (NULL, %s, %s, %s, %s)', (name, email, password, phone))
+        mysql.connection.commit()
+        return redirect(url_for('member_home'))
+
     return render_template('join.html')
 
 @app.route('/membership', methods=['GET'])
