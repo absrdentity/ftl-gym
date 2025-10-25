@@ -27,8 +27,8 @@ def join_membership():
         cursor.execute('INSERT INTO members VALUES (NULL, %s, %s, %s, %s)', (name, email, password, phone))
         mysql.connection.commit()
         return redirect(url_for('member_home'))
-
-    return render_template('join.html')
+    else:
+        return render_template('join.html')
 
 @app.route('/membership', methods=['GET'])
 def membership():
