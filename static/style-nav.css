@@ -1,0 +1,433 @@
+:root {
+  --bg-dark: #000000;
+  --text-light: #ffffff;
+  --primary-blue: #007bff;
+  --link-hover: #cccccc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  color: #ffffff;
+  background-color: #f4f4f4;
+  padding-top: 80px; /* Jarak untuk header yang fixed */
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header & Navigasi */
+.main-header {
+  background-color: var(--bg-dark);
+  padding: 20px 0;
+  position: fixed; /* Membuat header tetap di atas */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text-light);
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.main-nav ul li {
+  margin: 0 15px;
+}
+
+.main-nav ul li a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 5px 0;
+  transition: color 0.3s;
+}
+
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+  color: var(--primary-blue);
+}
+
+.hero-section {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.slider-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0; /* Semua slide tersembunyi awalnya */
+  transition: opacity 1.5s ease-in-out; /* Transisi untuk efek fade */
+  background-size: cover;
+  background-position: center;
+  filter: brightness(70%); /* Gelapkan gambar sedikit */
+  z-index: 1;
+}
+
+.slide.active {
+  opacity: 1; /* Slide yang aktif ditampilkan */
+  z-index: 2;
+}
+
+/* Ganti URL gambar-gambar di bawah ini dengan gambar gym Anda */
+.slide:nth-child(1) {
+  background-image: url("gedung.webp"); /* Gambar pertama (dari contoh Anda) */
+}
+.slide:nth-child(2) {
+  background-image: url("boxing.jpg"); /* Ganti dengan nama file gambar kedua */
+}
+.slide:nth-child(3) {
+  background-image: url("renang.jpg"); /* Ganti dengan nama file gambar ketiga */
+}
+
+.hero-text-content {
+  position: absolute;
+  top: 50%;
+  left: 10%; /* Atur ke kiri sedikit dari tepi */
+  transform: translateY(-50%); /* Hanya geser vertikal ke tengah */
+  text-align: left;
+  width: 90%;
+  max-width: 1200px;
+  z-index: 5;
+}
+
+@media (max-width: 768px) {
+  .hero-text-content {
+    left: 50%;
+    transform: translate(-50%, -50%); /* Kembali ke tengah pada mobile */
+    text-align: center;
+  }
+}
+
+/* --- Tambahan Gaya untuk Panah Navigasi Slider --- */
+
+/* Posisi Panah */
+.slider-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none; /* Memastikan klik tidak terhalang */
+  padding: 0 5%;
+}
+
+/* Gaya Tombol Panah */
+.prev,
+.next {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 2rem;
+  padding: 10px 15px;
+  border-radius: 50%;
+  user-select: none;
+  pointer-events: auto; /* Mengaktifkan klik pada tombol */
+  transition: background-color 0.3s;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* --- Gaya untuk Indikator Lingkaran (Dots) --- */
+
+.slider-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  text-align: center;
+}
+
+.dot {
+  cursor: pointer;
+  height: 10px;
+  width: 10px;
+  margin: 0 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.dot.active {
+  background-color: #ffffff;
+  transform: scale(1.2);
+}
+
+/* Modifikasi agar teks Register Now terlihat benar */
+.btn-register {
+  background-color: #007bff; /* Biru yang sama dengan Join Now */
+  color: white;
+  padding: 15px 35px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: inline-block;
+  transition: background-color 0.3s;
+}
+.btn-register:hover {
+  background-color: #0056b3;
+}
+
+/* Tombol Join Now */
+.btn-join {
+  background-color: var(--primary-blue);
+  color: var(--text-light);
+  padding: 8px 18px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  margin-left: 20px;
+}
+
+.btn-join:hover {
+  background-color: #0056b3;
+}
+
+/* Konten Halaman */
+.page-content {
+  padding: 40px 0;
+  background: #fff;
+  min-height: calc(100vh - 80px); /* Memastikan konten mengisi layar */
+}
+
+.page-content h2 {
+  color: var(--bg-dark);
+  margin-bottom: 20px;
+}
+
+.page-content p {
+  line-height: 1.8;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .main-nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  .main-nav ul li {
+    margin: 5px 10px;
+  }
+  .btn-join {
+    margin-left: 0;
+  }
+}
+
+/* --- Gaya untuk FTL Money Back Guarantee Section --- */
+.guarantee-section {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Sejajarkan konten ke atas */
+  padding: 60px 0;
+  gap: 40px; /* Jarak antar kolom */
+  border-top: 1px solid #eee; /* Garis pemisah opsional */
+}
+
+.guarantee-text,
+.guarantee-details {
+  flex: 1;
+}
+
+.guarantee-text h2 {
+  font-size: 2.5rem; /* Membuat judul sangat besar */
+  font-weight: 900;
+  line-height: 1.1;
+  color: #333; /* Menggunakan warna biru yang cerah */
+  margin: 0;
+}
+
+.guarantee-details {
+  padding-top: 5px; /* Sedikit geser ke bawah agar sejajar dengan judul besar */
+}
+
+.guarantee-details h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.guarantee-details p {
+  color: #555; /* Teks Hitam gelap untuk paragraf */
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+/* Tombol Join Now Khusus untuk Guarantee */
+.btn-join-guarantee {
+  background-color: var(--primary-blue);
+  color: var(--text-light);
+  padding: 12px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  display: inline-block;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  /* Memberikan efek bayangan seperti di gambar */
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.4);
+}
+
+.btn-join-guarantee:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.6);
+}
+
+/* Responsif: Menumpuk kolom pada layar kecil */
+@media (max-width: 768px) {
+  .guarantee-section {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 0;
+  }
+  .guarantee-text h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  .guarantee-details {
+    text-align: left; /* Teks detail tetap rata kiri agar mudah dibaca */
+    width: 100%;
+    padding-top: 0;
+  }
+}
+/* --- Gaya untuk WHY FTL? Section --- */
+.why-ftl-section {
+  background-color: #1a1a1a; /* Hitam gelap seperti di gambar */
+  padding: 80px 0;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.why-ftl-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.why-ftl-subtitle {
+  font-size: 1rem;
+  max-width: 700px;
+  margin: 0 auto 50px auto;
+  color: #cccccc;
+  line-height: 1.6;
+}
+
+.feature-layout {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  text-align: left;
+}
+
+.feature-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feature-item {
+  background-color: #2e2e2e; /* Warna latar belakang gelap untuk kotak fitur */
+  color: var(--text-light);
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Gaya untuk fitur yang disorot (biru) */
+.feature-item.active {
+  background-color: var(--primary-blue);
+  border-color: var(--primary-blue);
+  font-weight: 700;
+  /* Efek bayangan seperti di gambar */
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.5);
+}
+
+.feature-item:hover {
+  background-color: #3a3a3a;
+}
+
+.feature-item.active:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.feature-image {
+  flex: 1;
+  /* Memastikan gambar tidak melebihi lebar kontainer */
+  max-width: 50%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.feature-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Responsif untuk WHY FTL? Section */
+@media (max-width: 992px) {
+  .feature-layout {
+    flex-direction: column;
+  }
+  .feature-image {
+    max-width: 100%; /* Gambar mengisi lebar penuh */
+    margin-top: 30px;
+  }
+}

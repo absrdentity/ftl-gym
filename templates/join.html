@@ -1,0 +1,132 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+  <title>FTL GYM - Join Now</title>
+{% endblock %}
+
+{% block body %}
+    <style>
+      /* Gaya spesifik untuk formulir */
+      .form-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: #1a1a2e;
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        box-sizing: border-box; /* Agar padding tidak melebih lebar 100% */
+      }
+      .btn-submit {
+        background-color: #007bff;
+        color: white;
+        padding: 15px 25px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s;
+      }
+      .btn-submit:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="container header-content">
+        <a href="/" class="logo-text">FTL GYM</a>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="/" class="home-link">Home</a></li>
+            <li>
+              <a href="/membership" class="membership-link">Membership</a>
+            </li>
+            <li><a href="our_clubs.html" class="clubs-link">Our Clubs</a></li>
+          </ul>
+        </nav>
+
+        <a href="/join" class="btn-join active">Join Now</a>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <div class="container">
+        <h2 style="text-align: center">
+          Daftar Sekarang dan Mulai Transformasi Anda!
+        </h2>
+        <p style="text-align: center; margin-bottom: 30px">
+          Isi formulir di bawah ini dan kami akan segera menghubungi Anda.
+        </p>
+
+        <div class="form-container">
+          <form action="#" method="POST">
+            <div class="form-group">
+              <label for="name">Nama Lengkap</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Nomor Telepon</label>
+              <input type="tel" id="phone" name="phone" required />
+            </div>
+
+            <div class="form-group">
+              <label for="package">Pilihan Paket Keanggotaan</label>
+              <select id="package" name="package" required>
+                <option value="">-- Pilih Paket --</option>
+                <option value="basic">Basic Plan (Rp 300K/bln)</option>
+                <option value="standard">Standard Plan (Rp 550K/bln)</option>
+                <option value="ultra">Ultra 24/7 (Rp 700K/bln)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-submit">Kirim Pendaftaran</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      style="
+        background: #222;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+      "
+    >
+      <p>&copy; 2025 FTL GYM. All rights reserved.</p>
+    </footer>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+      document.querySelectorAll(".main-nav a").forEach((link) => {
+        link.classList.remove("active");
+      });
+      document.querySelector(".btn-join").classList.add("active"); // Menandai tombol join sebagai aktif
+    </script>
+{% endblock %}

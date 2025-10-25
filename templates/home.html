@@ -1,0 +1,144 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+  <title>FTL GYM - Home</title>
+{% endblock %}
+
+{% block body %}
+    <header class="main-header">
+      <div class="container header-content">
+        <a href="home.html" class="logo-text">
+          <span
+            style="
+              color: #5d9cec;
+              font-size: 2.5rem;
+              margin-right: -5px;
+              font-weight: 900;
+            "
+            >V</span
+          >FTL
+        </a>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="/" class="home-link active">Home</a></li>
+            <li>
+              <a href="/membership" class="membership-link">Membership</a>
+            </li>
+            <li><a href="our_clubs.html" class="clubs-link">Our Clubs</a></li>
+          </ul>
+        </nav>
+
+        <a href="/join" class="btn-join">Join Now</a>
+      </div>
+    </header>
+
+    <section class="hero-section">
+      <div class="slider-container">
+        <div class="slide active" style="background-image: url('{{ url_for('static', filename='gedung.webp') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='boxing.jpg') }}');"></div>
+        <div class="slide" style="background-image: url('{{ url_for('static', filename='renang.jpg') }}');"></div>
+      </div>
+    </section>
+
+      
+      <div class="hero-text-content">
+        <h1 class="hero-title">
+          ALL-IN GYM<br />
+          EXPERIENCE
+        </h1>
+        <p
+          class="hero-subtitle"
+          style="font-size: 1.1rem; font-weight: 400; margin-bottom: 25px">
+          Not Just a Gym — It's Your Lifestyle Upgrade
+        </p>
+        <a href="/join" class="btn-register">Register Now</a>
+      </div>
+
+      <div class="slider-nav">
+        <span class="prev">&#10094;</span> <span class="next">&#10095;</span>
+      </div>
+
+      <div class="slider-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
+
+    <main class="page-content">
+      <div class="container">
+        <section class="guarantee-section">
+          <div class="guarantee-text">
+            <h2>FTL MONEY BACK<br />GUARANTEE<br />PROGRAM</h2>
+          </div>
+          <div class="guarantee-details">
+            <h3>We've Got You Covered.</h3>
+            <p>
+              In the unlikely event that your home club permanently closes, FTL
+              ensures a full refund of your unused membership period and
+              Personal Training sessions — because your trust matters most.
+            </p>
+            <a href="/join" class="btn-join-guarantee">Join Now</a>
+          </div>
+        </section>
+        <section class="guarantee-section"></section>
+
+        <section class="why-ftl-section">
+          <div class="container">
+            <h2 class="why-ftl-title">WHY FTL?</h2>
+            <p class="why-ftl-subtitle">
+              FTL offers complete facilities, professional personal trainers,
+              and flexible memberships designed to fit your needs.
+            </p>
+
+            <div class="feature-layout">
+              <div class="feature-list">
+                <div class="feature-item active">
+                  Unlimited 24/7 access to all FTL clubs nationwide
+                </div>
+                <div class="feature-item">
+                  6000+ Group Exercise Classes every month
+                </div>
+                <div class="feature-item">
+                  Wellness facilities: Sauna, Steam, Jacuzzi & Onsen
+                </div>
+                <div class="feature-item">
+                  Indonesia's largest Group Pilates program
+                </div>
+                <div class="feature-item">FTL Money-Back Guarantee Program</div>
+              </div>
+
+              <div class="feature-image">
+                <img src="playground.jpg" alt="Playground Fitness Area" />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <main class="page-content">
+      <div class="container">
+        <h2>Transformasi Kebugaran Dimulai Di Sini</h2>
+        <p>Telusuri fitur-fitur utama kami di bawah.</p>
+      </div>
+    </main>
+
+    <footer
+      style="
+        background: #222;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+      "
+    >
+      <div class="container">
+        <p>&copy; 2025 FTL GYM. All rights reserved.</p>
+      </div>
+    </footer>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='slider.js') }}"></script>
+{% endblock %}

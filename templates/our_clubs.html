@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FTL GYM - Our Clubs</title>
+    <link rel="stylesheet" href="style-nav.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Gaya spesifik untuk daftar klub */
+      .club-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+      }
+      .club-card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: left;
+      }
+      .club-card h3 {
+        color: #1a1a2e;
+        margin-bottom: 10px;
+      }
+      .club-card p {
+        font-size: 0.95rem;
+        color: #666;
+        margin-bottom: 5px;
+      }
+      .club-card .map-link {
+        display: inline-block;
+        margin-top: 15px;
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="container header-content">
+        <a href="home.html" class="logo-text">FTL GYM</a>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="home.html" class="home-link">Home</a></li>
+            <li>
+              <a href="membership.html" class="membership-link">Membership</a>
+            </li>
+            <li>
+              <a href="our_clubs.html" class="clubs-link active">Our Clubs</a>
+            </li>
+          </ul>
+        </nav>
+
+        <a href="join.html" class="btn-join">Join Now</a>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <div class="container" style="text-align: center">
+        <h2>Jaringan Klub FTL GYM</h2>
+        <p style="margin-bottom: 40px">
+          Lebih dari 50 lokasi di seluruh negeri, dengan akses 24/7 di klub
+          tertentu.
+        </p>
+
+        <div class="club-list">
+          <div class="club-card">
+            <h3>FTL Central City 🌃</h3>
+            <p>Jl. Jendral Sudirman Kav. 18, Jakarta Pusat</p>
+            <p>Fasilitas: 24/7 Access, Studio Yoga, Kolam Renang</p>
+            <a href="#" class="map-link">Lihat di Peta →</a>
+          </div>
+
+          <div class="club-card">
+            <h3>FTL Galaxy Mall 🚀</h3>
+            <p>Mall Galaxy Lt. 3, Surabaya Timur</p>
+            <p>Fasilitas: Kelas Zumba, Pilates+, Ruang Latihan Pribadi</p>
+            <a href="#" class="map-link">Lihat di Peta →</a>
+          </div>
+
+          <div class="club-card">
+            <h3>FTL North Point 🧭</h3>
+            <p>Komplek Ruko Utara No. 12, Bandung</p>
+            <p>Fasilitas: Akses Reguler, Area Kardio Luas</p>
+            <a href="#" class="map-link">Lihat di Peta →</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      style="
+        background: #222;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+      "
+    >
+      <p>&copy; 2025 FTL GYM. All rights reserved.</p>
+    </footer>
+
+    <script>
+      document.querySelectorAll(".main-nav a").forEach((link) => {
+        link.classList.remove("active");
+      });
+      document.querySelector(".clubs-link").classList.add("active");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,155 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+    <title>FTL GYM - Membership</title>
+{% endblock %}
+
+{% block body %}
+    <style>
+      /* Gaya spesifik untuk kartu harga */
+      .pricing-grid {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+      }
+      .pricing-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 30px;
+        text-align: center;
+        width: 300px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+      .pricing-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+      .pricing-card h3 {
+        color: #007bff;
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+      }
+      .pricing-card .price {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 15px 0;
+        color: #1a1a2e;
+      }
+      .pricing-card ul {
+        list-style: none;
+        text-align: left;
+        margin-bottom: 25px;
+      }
+      .pricing-card ul li {
+        padding: 8px 0;
+        border-bottom: 1px dotted #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="container header-content">
+        <a href="home.html" class="logo-text">FTL GYM</a>
+
+        <nav class="main-nav">
+          <ul>
+            <li><a href="home.html" class="home-link">Home</a></li>
+            <li>
+              <a href="membership.html" class="membership-link active"
+                >Membership</a
+              >
+            </li>
+            <li><a href="our_clubs.html" class="clubs-link">Our Clubs</a></li>
+          </ul>
+        </nav>
+
+        <a href="join.html" class="btn-join">Join Now</a>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <div class="container">
+        <h2>Pilih Keanggotaan yang Tepat Untuk Anda</h2>
+        <p style="text-align: center; margin-bottom: 40px">
+          Kami menawarkan paket fleksibel dengan akses ke semua fasilitas dan
+          kelas kami.
+        </p>
+
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3>Basic Plan</h3>
+            <p class="price">Rp 300K <small>/bulan</small></p>
+            <ul>
+              <li>✔ Akses ke alat kardio & beban</li>
+              <li>✔ Akses 1 klub pilihan</li>
+              <li>❌ Akses Kelas Reguler</li>
+              <li>❌ Akses 24/7</li>
+            </ul>
+            <a href="/join" class="btn-join" style="margin-left: 0"
+              >Pilih Paket</a
+            >
+          </div>
+
+          <div
+            class="pricing-card"
+            style="border-color: #007bff; transform: scale(1.05)"
+          >
+            <h3>Standard (Populer)</h3>
+            <p class="price">Rp 550K <small>/bulan</small></p>
+            <ul>
+              <li>✔ Akses ke alat kardio & beban</li>
+              <li>✔ **Akses Semua Klub**</li>
+              <li>✔ Akses Kelas Reguler</li>
+              <li>❌ Akses 24/7</li>
+            </ul>
+            <a
+              href="/join"
+              class="btn-join"
+              style="margin-left: 0; background: #0056b3"
+              >Pilih Paket</a
+            >
+          </div>
+
+          <div class="pricing-card">
+            <h3>Ultra 24/7</h3>
+            <p class="price">Rp 700K <small>/bulan</small></p>
+            <ul>
+              <li>✔ Akses ke alat kardio & beban</li>
+              <li>✔ Akses Semua Klub</li>
+              <li>✔ Akses Kelas Reguler & Pilates+</li>
+              <li>✔ **Akses Penuh 24/7**</li>
+            </ul>
+            <a href="/join" class="btn-join" style="margin-left: 0"
+              >Pilih Paket</a
+            >
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer
+      style="
+        background: #222;
+        color: white;
+        text-align: center;
+        padding: 15px 0;
+        margin-top: 40px;
+      "
+    >
+      <p>&copy; 2025 FTL GYM. All rights reserved.</p>
+    </footer>
+{% endblock %}
+
+{% block script %}
+    <script>
+      // Opsional: Jika Anda ingin script tetap berfungsi di semua halaman
+      document.querySelectorAll(".main-nav a").forEach((link) => {
+        link.classList.remove("active");
+      });
+      document.querySelector(".membership-link").classList.add("active");
+    </script>
+{% endblock %}
