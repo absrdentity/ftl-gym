@@ -140,11 +140,67 @@
         <p>&copy; 2025 EXODUS GYM. All rights reserved.</p>
       </div>
     </footer>
-{% endblock %}
 
 <script>
-    document.querySelectorAll(".main-nav a").forEach((link) => {
-      link.classList.remove("active");
+    document.addEventListener("DOMContentLoaded", function() {
+      let slides = document.querySelectorAll(".slide");
+      let dots = document.querySelectorAll(".dot");
+      let currentIndex = 0;
+      let interval;
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("active", i === index);
+          dots[i].classList.toggle("active", i === index);
+        });
+        currentIndex = index;
+      }
+
+      function nextSlide() {
+        let newIndex = (currentIndex + 1) % slides.length;
+        showSlide(newIndex);
+      }
+
+      function prevSlide() {
+        let newIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(newIndex);
+      }
+
+      function startAutoSlide() {
+        interval = setInterval(nextSlide, 4000); // auto slide every 4 seconds
+      }
+
+      function stopAutoSlide() {
+        clearInterval(interval);
+      }
+
+      // Buttons
+      document.querySelector(".next").addEventListener("click", () => {
+        stopAutoSlide();
+        nextSlide();
+        startAutoSlide();
+      });
+
+      document.querySelector(".prev").addEventListener("click", () => {
+        stopAutoSlide();
+        prevSlide();
+        startAutoSlide();
+      });
+
+      // Dots navigation
+      dots.forEach((dot, i) => {
+        dot.addEventListener("click", () => {
+          stopAutoSlide();
+          showSlide(i);
+          startAutoSlide();
+        });
+      });
+
+      // Start slider
+      showSlide(currentIndex);
+      startAutoSlide();
     });
-    document.querySelector(".clubs-link").classList.add("active");
 </script>
+
+{% endblock %}
+
