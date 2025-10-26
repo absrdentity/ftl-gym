@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, url_for, redirect, render_template
+from flask import Flask, jsonify, request, url_for, redirect, render_template, session
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 
@@ -46,6 +46,10 @@ def member_home():
     email = request.args.get('email')
     phone = request.args.get('phone')
     package = request.args.get('package')
+
+    member = session.get('member')
+    if not member:
+        return redirect(url_for('member_login'))
     return render_template('member_home.html', name=name, package=package, email=email, phone=phone)
 
 @app.route('/member_login', methods=['GET', 'POST'])
@@ -62,11 +66,22 @@ def member_login():
         member = cursor.fetchone()
 
         if member:
+            session['member'] = {
+                'name': member['name'],
+                'email': member['email'],
+                'phone': member['phone'],
+                'package': member['package']
+            }
             return redirect(url_for('member_home', name=member['name'], package=member['package'], email=member['email'], phone=member['phone']))
         else:
             return 'Invalid email or password'
 
     return render_template('member_login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('member', None)
+    return redirect(url_for('home'))
 
 @app.route('/membership', methods=['GET'])
 def membership():

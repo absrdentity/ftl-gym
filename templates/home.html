@@ -19,7 +19,20 @@
           </ul>
         </nav>
 
-        <a href="/join" class="btn-join">Join Now</a>
+        {% if session.member %}
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle" id="userDropdown">
+              {{ session.member.name }}
+              <i class="bi bi-caret-down-fill"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ url_for('member_home', name=session.member.name, package=session.member.package, email=session.member.email, phone=session.member.phone) }}">Profile</a></li>
+              <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+          </div>
+        {% else %}
+          <a href="/join" class="btn-join">Join Now</a>
+        {% endif %}
       </div>
     </header>
 
@@ -33,12 +46,12 @@
 
       
       <div class="hero-text-content">
-        <h1 class="hero-title">
+        <h1 class="hero-title text-light">
           ALL-IN GYM<br />
           EXPERIENCE
         </h1>
         <p
-          class="hero-subtitle"
+          class="hero-subtitle text-light"
           style="font-size: 1.1rem; font-weight: 400; margin-bottom: 25px">
           Not Just a Gym — It's Your Lifestyle Upgrade
         </p>
@@ -130,5 +143,18 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{{ url_for('static', filename='slider.js') }}"></script>
+    <script 
+      src="{{ url_for('static', filename='slider.js') }}">
+      document.addEventListener('click', function (e) {
+        const dropdown = document.querySelector('.dropdown');
+        if (!dropdown) return;
+
+        // Toggle dropdown if the toggle is clicked
+        if (e.target.closest('#userDropdown')) {
+          dropdown.classList.toggle('active');
+        } else {
+          dropdown.classList.remove('active');
+        }
+      });
+    </script>
 {% endblock %}
