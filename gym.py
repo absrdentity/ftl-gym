@@ -46,6 +46,25 @@ def member_home():
     package = request.args.get('package')
     return render_template('member_home.html', name=name, package=package)
 
+@app.route('/member_login', methods=['GET', 'POST'])
+def member_login():
+    if request.method == 'POST' and all(k in request.form for k in ['email', 'password']):
+        email = request.form['email']
+        password = request.form['password']
+
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute(
+            'SELECT * FROM members WHERE email = %s AND password = %s',
+            (email, password)
+        )
+        member = cursor.fetchone()
+
+        if member:
+            return redirect(url_for('member_home', name=member['name'], package=member['package']))
+        else:
+            return 'Invalid email or password'
+
+    return render_template('member_login.html')
 
 @app.route('/membership', methods=['GET'])
 def membership():
