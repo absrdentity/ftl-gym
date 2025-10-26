@@ -35,7 +35,7 @@ def join():
         )
         mysql.connection.commit()
 
-        return redirect(url_for('member_home', name=name, package=selected_package))
+        return redirect(url_for('member_home', name=name,email=email, package=selected_package))
     
     return render_template('join.html', selected_package=selected_package)
 
@@ -43,8 +43,9 @@ def join():
 @app.route('/member_home')
 def member_home():
     name = request.args.get('name')
+    email = request.args.get('email')
     package = request.args.get('package')
-    return render_template('member_home.html', name=name, package=package)
+    return render_template('member_home.html', name=name, package=package, email=email)
 
 @app.route('/member_login', methods=['GET', 'POST'])
 def member_login():
