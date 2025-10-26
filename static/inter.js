@@ -78,11 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
   startAutoSlide();
 });
 
-document.querySelectorAll(".main-nav a").forEach((link) => {
-  link.classList.remove("active");
-});
-document.querySelector(".btn-join").classList.add("active"); // Menandai tombol join sebagai aktif
-
 document.addEventListener('click', function (e) {
   const dropdown = document.querySelector('.dropdown');
   if (!dropdown) return;

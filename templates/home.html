@@ -142,4 +142,9 @@
     </footer>
 {% endblock %}
 
-
+<script>
+    document.querySelectorAll(".main-nav a").forEach((link) => {
+      link.classList.remove("active");
+    });
+    document.querySelector(".clubs-link").classList.add("active");
+</script>

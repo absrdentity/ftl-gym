@@ -18,7 +18,6 @@ def home():
 
 @app.route('/join', methods=['GET', 'POST'])
 def join():
-
     selected_package = request.args.get('package', '')
 
     if request.method == 'POST':
@@ -39,18 +38,23 @@ def join():
     
     return render_template('join.html', selected_package=selected_package)
 
-
 @app.route('/member_home')
 def member_home():
-    name = request.args.get('name')
-    email = request.args.get('email')
-    phone = request.args.get('phone')
-    package = request.args.get('package')
-
-    member = session.get('member')
-    if not member:
+    if 'member' not in session:
         return redirect(url_for('member_login'))
-    return render_template('member_home.html', name=name, package=package, email=email, phone=phone)
+
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('SELECT * FROM members WHERE id = %s', (session['member'],))
+    member = cursor.fetchone()
+
+    return render_template(
+        'member_home.html',
+        name=member['name'],
+        email=member['email'],
+        phone=member['phone'],
+        package=member['package']
+    )
+
 
 @app.route('/member_login', methods=['GET', 'POST'])
 def member_login():
@@ -66,13 +70,10 @@ def member_login():
         member = cursor.fetchone()
 
         if member:
-            session['member'] = {
-                'name': member['name'],
-                'email': member['email'],
-                'phone': member['phone'],
-                'package': member['package']
-            }
-            return redirect(url_for('member_home', name=member['name'], package=member['package'], email=member['email'], phone=member['phone']))
+            session['member'] = member['ID']
+            session.permamnent = True
+            flash('Login successful!')
+            return redirect(url_for('member_home'))
         else:
             return 'Invalid email or password'
 
