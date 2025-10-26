@@ -6,7 +6,6 @@
 
 {% block body %}
     <style>
-      /* Gaya spesifik untuk kartu harga */
       .pricing-grid {
         display: flex;
         justify-content: center;
@@ -49,8 +48,6 @@
         border-bottom: 1px dotted #eee;
       }
     </style>
-  </head>
-  <body>
     <header class="main-header">
       <div class="container header-content">
         <a href="/" class="logo-text">EXODUS GYM</a>
@@ -66,7 +63,20 @@
             <li><a href="/our-clubs" class="clubs-link">Our Clubs</a></li>
           </ul>
         </nav>
-        <a href="/join" class="btn-join">Join Now</a>
+        {% if session.member %}
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle" id="userDropdown">
+              {{ session.member.name }}
+              <i class="bi bi-caret-down-fill"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{{ url_for('member_home', name=session.member.name, package=session.member.package, email=session.member.email, phone=session.member.phone) }}">Profile</a></li>
+              <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+          </div>
+        {% else %}
+          <a href="/join" class="btn-join">Join Now</a>
+        {% endif %}
       </div>
     </header>
 
@@ -141,14 +151,4 @@
     >
       <p>&copy; 2025 EXODUS GYM. All rights reserved.</p>
     </footer>
-{% endblock %}
-
-{% block script %}
-    <script>
-      // Opsional: Jika Anda ingin script tetap berfungsi di semua halaman
-      document.querySelectorAll(".main-nav a").forEach((link) => {
-        link.classList.remove("active");
-      });
-      document.querySelector(".membership-link").classList.add("active");
-    </script>
 {% endblock %}

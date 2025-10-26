@@ -142,19 +142,4 @@
     </footer>
 {% endblock %}
 
-{% block scripts %}
-    <script 
-      src="{{ url_for('static', filename='slider.js') }}">
-      document.addEventListener('click', function (e) {
-        const dropdown = document.querySelector('.dropdown');
-        if (!dropdown) return;
 
-        // Toggle dropdown if the toggle is clicked
-        if (e.target.closest('#userDropdown')) {
-          dropdown.classList.toggle('active');
-        } else {
-          dropdown.classList.remove('active');
-        }
-      });
-    </script>
-{% endblock %}

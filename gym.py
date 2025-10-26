@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, url_for, redirect, render_template, session
+from flask import Flask, jsonify, request, url_for, redirect, render_template, session, flash
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 
@@ -86,6 +86,31 @@ def logout():
 @app.route('/membership', methods=['GET'])
 def membership():
     return render_template('membership.html')
+
+@app.route('/upgrade_membership', methods=['GET', 'POST'])
+def upgrade_membership(): 
+    if 'member' not in session:
+        return redirect(url_for('member_login'))
+    
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute(
+        'SELECT * FROM members WHERE id = %s',
+        (session['member'],)
+    )
+    member = cursor.fetchone()
+
+    if request.method == 'POST':
+        new_package = request.form['package']
+        cursor.execute(
+            'UPDATE members SET package = %s WHERE id = %s',
+            (new_package, session['member'])
+        )
+        mysql.connection.commit()
+
+        flash('Membership upgraded successfully!')
+        return redirect(url_for('member_home'))
+    
+    return render_template('upgrade_membership.html', member=member)
 
 @app.route('/our-clubs')
 def our_clubs():

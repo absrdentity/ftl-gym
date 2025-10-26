@@ -1,0 +1,123 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+    <title>EXODUS GYM - Membership</title>
+{% endblock %}
+
+{% block body %}
+
+    <style>
+      .pricing-grid {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+      }
+      .pricing-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 30px;
+        text-align: center;
+        width: 300px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+      .pricing-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+      .pricing-card h3 {
+        color: #007bff;
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+      }
+      .pricing-card .price {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 15px 0;
+        color: #1a1a2e;
+      }
+      .pricing-card ul {
+        list-style: none;
+        text-align: left;
+        margin-bottom: 25px;
+      }
+      .pricing-card ul li {
+        padding: 8px 0;
+        border-bottom: 1px dotted #eee;
+      }
+    </style>
+
+    <main class="page-content">
+      <div class="container text-center mt-5">
+        <h2>Upgrade Your Membership</h2>
+        <p class="text-muted">Current Plan: <strong>{{ member.package|capitalize }}</strong></p>
+
+        <div class="pricing-grid mt-4 d-flex justify-content-between">
+            <form method="POST" action="/upgrade_membership" class="w-100 d-flex justify-content-between">
+                <div class="pricing-card flext-fill mx-2">
+                    <h3>Basic Plan</h3>
+                    <p class="price">Rp 300K <small>/bulan</small></p>
+                    <ul>
+                        <li>✔ Akses ke alat kardio & beban</li>
+                        <li>✔ Akses 1 klub pilihan</li>
+                        <li>❌ Akses Kelas Reguler</li>
+                        <li>❌ Akses 24/7</li>
+                    </ul>
+                    {% if member.package != 'basic' %}
+                        <button type="submit" name="package" value="basic" class="btn-join w-100">
+                            Upgrade ke Basic
+                        </button>
+                    {% else %}
+                        <button type="button" class="btn btn-secondary w-100" disabled>
+                            Current Plan
+                        </button>
+                    {% endif %}
+                </div>
+
+                <div class="pricing-card flex-fill mx-2" style="border-color: #007bff; transform: scale(1.05)">
+                    <h3>Standard (Populer)</h3>
+                    <p class="price">Rp 550K <small>/bulan</small></p>
+                    <ul>
+                        <li>✔ Akses ke alat kardio & beban</li>
+                        <li>✔ **Akses Semua Klub**</li>
+                        <li>✔ Akses Kelas Reguler</li>
+                        <li>❌ Akses 24/7</li>
+                    </ul>
+                    {% if member.package != 'standard' %}
+                        <button type="submit" name="package" value="standard" class="btn-join w-100" style="margin-left: 0;">
+                            Upgrade ke Standard
+                        </button>
+                    {% else %}
+                        <button type="button" class="btn btn-secondary w-100" disabled>
+                            Current Plan
+                        </button>
+                    {% endif %}
+                </div>
+
+                <div class="pricing-card mx-2">
+                    <h3>Ultra 24/7</h3>
+                    <p class="price">Rp 700K <small>/bulan</small></p>
+                    <ul>
+                        <li>✔ Akses ke alat kardio & beban</li>
+                        <li>✔ Akses Semua Klub</li>
+                        <li>✔ Akses Kelas Reguler & Pilates+</li>
+                        <li>✔ **Akses Penuh 24/7**</li>
+                    </ul>
+                    {% if member.package != 'ultra' %}
+                        <button type="submit" name="package" value="ultra" class="btn-join w-100">
+                            Upgrade ke Ultra 24/7
+                        </button>
+                    {% else %}
+                        <button type="button" class="btn btn-secondary w-100" disabled>
+                            Current Plan
+                        </button>
+                    {% endif %}
+                </div>
+                </div>
+            </form>
+      </div>
+    </main>
+{% endblock %}

@@ -139,25 +139,3 @@
       <p>&copy; 2025 EXODUS GYM. All rights reserved.</p>
     </footer>
 {% endblock %}
-
-{% block scripts %}
-    <script>
-      document.querySelectorAll(".main-nav a").forEach((link) => {
-        link.classList.remove("active");
-      });
-      document.querySelector(".btn-join").classList.add("active"); // Menandai tombol join sebagai aktif
-
-      document.addEventListener('click', function (e) {
-        const dropdown = document.querySelector('.dropdown');
-        if (!dropdown) return;
-
-        // Toggle dropdown if the toggle is clicked
-        if (e.target.closest('#userDropdown')) {
-          dropdown.classList.toggle('active');
-        } else {
-          dropdown.classList.remove('active');
-        }
-      });
-
-    </script>
-{% endblock %}
