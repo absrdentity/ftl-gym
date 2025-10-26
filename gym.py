@@ -21,7 +21,7 @@ def join():
 
     selected_package = request.args.get('package', '')
 
-    if request.method == 'POST' and all(k in request.form for k in ['name', 'email', 'password', 'phone', 'package']):
+    if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
         password = request.form['password']
@@ -31,11 +31,11 @@ def join():
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute(
             'INSERT INTO members (name, email, password, phone, package) VALUES (%s, %s, %s, %s, %s)',
-            (name, email, password, phone, selected_package)
+            (name, email, password, phone, package)
         )
         mysql.connection.commit()
 
-        return redirect(url_for('member_home', name=name,email=email, package=selected_package))
+        return redirect(url_for('member_home', name=name,email=email, package=package, phone=phone))
     
     return render_template('join.html', selected_package=selected_package)
 
@@ -44,8 +44,9 @@ def join():
 def member_home():
     name = request.args.get('name')
     email = request.args.get('email')
+    phone = request.args.get('phone')
     package = request.args.get('package')
-    return render_template('member_home.html', name=name, package=package, email=email)
+    return render_template('member_home.html', name=name, package=package, email=email, phone=phone)
 
 @app.route('/member_login', methods=['GET', 'POST'])
 def member_login():
@@ -61,7 +62,7 @@ def member_login():
         member = cursor.fetchone()
 
         if member:
-            return redirect(url_for('member_home', name=member['name'], package=member['package']))
+            return redirect(url_for('member_home', name=member['name'], package=member['package'], email=member['email'], phone=member['phone']))
         else:
             return 'Invalid email or password'
 
