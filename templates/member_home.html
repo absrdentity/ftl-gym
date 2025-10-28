@@ -1,57 +1,57 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html' %} {% block head %}
+<title>Member - EXODUS GYM</title>
+{% endblock %} {% block body %}
 
-{% block head %}
-    <title>Member - EXODUS GYM</title>
-{% endblock %}
+<section class="member-home py-5">
+  <div class="container text-center">
+    <h1>Welcome to EXODUS GYM!</h1>
 
-{% block body %}
-
-    <section class="member-home py-5">
+    <div class="card">
+      <div class="card-body">
         <div class="container text-center">
-            <h1>Welcome to EXODUS GYM!</h1>
-
-            <div class="card">
-                <div class="card-body">
-                    <div class="container text-center">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <img src="{{ url_for('static', filename='profile.png') }}" 
-                                alt="Profile pic"
-                                class="img-fluid rounded-circle mb-3" />
-                            </div>
-                            <div class="col-sm-9">
-                                <div class="row">
-                                    <div class="col-8 col-sm-6 text-start">
-                                        <h1>{{ name }}</h1>
-                                        <p>{{ package }} member</p>
-                                    </div>
-                                    <div class="col-4 col-sm-6">
-                                        <div class="contact-info d-flex flex-column text-start">
-                                            <div class="email mb-3">
-                                                <i class="bi bi-envelope"></i>
-                                                <span>{{ email }}</span>
-                                            </div>
-                                            <div class="phone">
-                                                <i class="bi bi-telephone"></i>
-                                                <span>{{ phone }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <img
+                src="{{ url_for('static', filename='profile.png') }}"
+                alt="Profile pic"
+                class="img-fluid rounded-circle mb-3"
+              />
+            </div>
+            <div class="col-sm-9">
+              <div class="row">
+                <div class="col-8 col-sm-6 text-start">
+                  <h1>{{ name }}</h1>
+                  <p>{{ package }} member</p>
+                </div>
+                <div class="col-4 col-sm-6">
+                  <div class="contact-info d-flex flex-column text-start">
+                    <div class="email mb-3">
+                      <i class="bi bi-envelope"></i>
+                      <span>{{ email }}</span>
                     </div>
+                    <div class="phone">
+                      <i class="bi bi-telephone"></i>
+                      <span>{{ phone }}</span>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-
-            <div class="mt-5">
-                <h3>What would you like to do next?</h3>
-                <div class="d-flex justify-content-center flex-wrap mt-4">
-                    <a href="/upgrade_membership" class="btn btn-secondary m-2">Upgrade Membership</a>
-                    <a href="/logout" class="btn btn-outline-secondary m-2">Logout</a>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <h3>What would you like to do next?</h3>
+      <div class="d-flex justify-content-center flex-wrap mt-4">
+        <a href="/upgrade_membership" class="btn btn-secondary m-2"
+          >Change Plans</a
+        >
+        <a href="/logout" class="btn btn-outline-secondary m-2">Logout</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 {% endblock %}
