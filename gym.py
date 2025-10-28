@@ -75,16 +75,13 @@ def member_login():
 
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
 
-        # 🔍 First check if the email exists
         cursor.execute('SELECT * FROM members WHERE email = %s', (email,))
         member = cursor.fetchone()
 
         if not member:
-            # Email not found
-            error_message = 'Email not found. Please register first.'
+            error_message = 'Email not found.'
             return render_template('member_login.html', error=error_message)
 
-        # 🔐 If email exists, check the password
         if member['password'] != password:
             error_message = 'Incorrect password. Please try again.'
             return render_template('member_login.html', error=error_message)
