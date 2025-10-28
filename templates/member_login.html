@@ -49,24 +49,6 @@
     }
 </style>
 
-<header class="main-header">
-    <div class="container header-content">
-    <a href="/" class="logo-text">EXODUS GYM</a>
-
-    <nav class="main-nav">
-        <ul>
-        <li><a href="/" class="home-link">Home</a></li>
-        <li>
-            <a href="/membership" class="membership-link">Membership</a>
-        </li>
-        <li><a href="/our-clubs" class="clubs-link">Our Clubs</a></li>
-        </ul>
-    </nav>
-
-    <a href="/join" class="btn-join active">Join Now</a>
-    </div>
-</header>
-
 <main class="page-content">
     <div class="container">
         <h1 style="text-align: center;">
@@ -86,6 +68,12 @@
                 
                 <button type="submit" class="btn-submit">Login</button>
             </form>
+
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
         </div>
     </div>
 </main>

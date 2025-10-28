@@ -48,37 +48,6 @@
       }
     </style>
 
-    <header class="main-header">
-      <div class="container header-content">
-        <a href="/" class="logo-text">EXODUS GYM</a>
-
-        <nav class="main-nav">
-          <ul>
-            <li><a href="/" class="home-link">Home</a></li>
-            <li>
-              <a href="/membership" class="membership-link">Membership</a>
-            </li>
-            <li><a href="/our-clubs" class="clubs-link">Our Clubs</a></li>
-          </ul>
-        </nav>
-
-        {% if session.member %}
-          <div class="dropdown">
-            <a href="#" class="dropdown-toggle" id="userDropdown">
-              {{ session.member.name }}
-              <i class="bi bi-caret-down-fill"></i>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="{{ url_for('member_home', name=session.member.name, package=session.member.package, email=session.member.email, phone=session.member.phone) }}">Profile</a></li>
-              <li><a href="{{ url_for('logout') }}">Logout</a></li>
-            </ul>
-          </div>
-        {% else %}
-          <a href="/join" class="btn-join">Join Now</a>
-        {% endif %}
-      </div>
-    </header>
-
     <main class="page-content">
       <div class="container">
         <h2 style="text-align: center">
@@ -119,6 +88,12 @@
                 <option value="ultra"{% if selected_package == 'ultra' %}selected{% endif %}>Ultra 24/7 (Rp 700K/bln)</option>
               </select>
             </div>
+
+            {% if error %}
+              <div class="form-group" style="color: red;">
+                {{ error }}
+              </div>
+            {% endif %}
 
             <h6>Sudah member? <a href="/member_login">Login</a></h6>
 

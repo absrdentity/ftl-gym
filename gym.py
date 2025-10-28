@@ -28,15 +28,27 @@ def join():
         package = request.form['package']
 
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        
+        # 🔍 Check if email already exists
+        cursor.execute('SELECT * FROM members WHERE email = %s', (email,))
+        existing_user = cursor.fetchone()
+
+        if existing_user:
+            # Email already exists → show error message
+            error_message = 'Email already registered. Please use another email or log in.'
+            return render_template('join.html', selected_package=selected_package, error=error_message)
+
+        # ✅ Email not found → proceed to insert
         cursor.execute(
             'INSERT INTO members (name, email, password, phone, package) VALUES (%s, %s, %s, %s, %s)',
             (name, email, password, phone, package)
         )
         mysql.connection.commit()
 
-        return redirect(url_for('member_home', name=name,email=email, package=package, phone=phone))
+        return redirect(url_for('member_home', name=name, email=email, package=package, phone=phone))
     
     return render_template('join.html', selected_package=selected_package)
+
 
 @app.route('/member_home')
 def member_home():
@@ -55,7 +67,6 @@ def member_home():
         package=member['package']
     )
 
-
 @app.route('/member_login', methods=['GET', 'POST'])
 def member_login():
     if request.method == 'POST' and all(k in request.form for k in ['email', 'password']):
@@ -63,21 +74,29 @@ def member_login():
         password = request.form['password']
 
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute(
-            'SELECT * FROM members WHERE email = %s AND password = %s',
-            (email, password)
-        )
+
+        # 🔍 First check if the email exists
+        cursor.execute('SELECT * FROM members WHERE email = %s', (email,))
         member = cursor.fetchone()
 
-        if member:
-            session['member'] = member['ID']
-            session.permamnent = True
-            flash('Login successful!')
-            return redirect(url_for('member_home'))
-        else:
-            return 'Invalid email or password'
+        if not member:
+            # Email not found
+            error_message = 'Email not found. Please register first.'
+            return render_template('member_login.html', error=error_message)
+
+        # 🔐 If email exists, check the password
+        if member['password'] != password:
+            error_message = 'Incorrect password. Please try again.'
+            return render_template('member_login.html', error=error_message)
+
+        # ✅ Email and password match
+        session['member'] = member['ID']
+        session.permanent = True
+        flash('Login successful!')
+        return redirect(url_for('member_home'))
 
     return render_template('member_login.html')
+
 
 @app.route('/logout')
 def logout():
