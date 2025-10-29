@@ -29,16 +29,13 @@ def join():
 
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         
-        # 🔍 Check if email already exists
         cursor.execute('SELECT * FROM members WHERE email = %s', (email,))
         existing_user = cursor.fetchone()
 
         if existing_user:
-            # Email already exists → show error message
             error_message = 'Email already registered. Please use another email or log in.'
             return render_template('join.html', selected_package=selected_package, error=error_message)
 
-        # ✅ Email not found → proceed to insert
         cursor.execute(
             'INSERT INTO members (name, email, password, phone, package) VALUES (%s, %s, %s, %s, %s)',
             (name, email, password, phone, package)
@@ -86,7 +83,6 @@ def member_login():
             error_message = 'Incorrect password. Please try again.'
             return render_template('member_login.html', error=error_message)
 
-        # ✅ Email and password match
         session['member'] = member['ID']
         session.permanent = True
         flash('Login successful!')
