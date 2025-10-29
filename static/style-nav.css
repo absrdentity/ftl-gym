@@ -346,19 +346,29 @@ body {
   color: var(--text-light);
 }
 
-.why-ftl-title {
-  font-size: 2.8rem;
-  font-weight: 900;
-  margin-bottom: 20px;
+/* --- Feature Layout (WHY EXODUS?) --- */
+.why-ftl-section .container {
+  max-width: 1200px; /* Batasi lebar container utama */
+  padding: 40px 20px;
+}
+
+/* PERBAIKAN: Meningkatkan spesifisitas agar warna menjadi putih (white) */
+.why-ftl-section .why-ftl-title {
+  font-size: 2.5rem;
+  color: white; /* UBAH INI MENJADI 'white' */
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .why-ftl-subtitle {
-  font-size: 1rem;
-  max-width: 700px;
-  margin: 0 auto 50px auto;
-  color: #cccccc;
-  line-height: 1.6;
+  font-size: 1.1rem;
+  color: #bbb; /* Ini untuk subtitle, bisa juga diubah ke white jika diinginkan */
+  text-align: center;
+  margin-bottom: 50px;
 }
+
+/* Sisa CSS lainnya untuk feature-layout, feature-image, dll. tetap sama */
+/* ... */
 
 .feature-layout {
   display: flex;
@@ -626,9 +636,9 @@ body {
 }
 
 /* To achieve the blue gradient overlay seen in the image,
-	it's often better to use a pseudo-element or mix-blend-mode
-	if the image is set as background-image.
-	For img tags, a div overlay is easier:
+  it's often better to use a pseudo-element or mix-blend-mode
+  if the image is set as background-image.
+  For img tags, a div overlay is easier:
 */
 .trainer-card::after {
   content: "";
@@ -964,5 +974,107 @@ body {
   .new-next {
     font-size: 1.5rem;
     padding: 8px 12px;
+  }
+}
+
+/* --- Feature Layout (WHY EXODUS?) --- */
+.why-ftl-section .container {
+  max-width: 1200px; /* Batasi lebar container utama */
+  padding: 40px 20px;
+  /* Tambahkan background jika Anda ingin membedakan section ini */
+  /* background-color: #1a1a1a; */
+}
+
+/* DUPILIKASI / PERBAIKAN DARI ATAS, HANYA DISINI DENGAN SPESIFISITAS TINGGI */
+/* PASTIKAN HANYA SELEKTOR DENGAN SPESIFISITAS TINGGI YANG DIGUNAKAN UNTUK MENGHINDARI KONFLIK */
+.why-ftl-title {
+  font-size: 2.5rem;
+  color: white; /* HARUSNYA PUTIH */
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.why-ftl-subtitle {
+  font-size: 1.1rem;
+  color: #bbb;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* Kunci: Tata Letak Berdampingan */
+.feature-layout {
+  display: flex;
+  gap: 30px; /* Jarak antara daftar fitur dan gambar */
+  align-items: flex-start;
+  margin-top: 40px;
+}
+
+/* Daftar Fitur (Sisi Kiri) */
+.feature-list {
+  flex: 1; /* Ambil proporsi 1 bagian */
+  max-width: 500px; /* Batasi lebar daftar fitur */
+}
+
+/* Container Gambar (Sisi Kanan) - UKURAN GAMBAR DIPERKECIL DI SINI */
+.feature-image {
+  flex: 1; /* Ambil proporsi 1 bagian */
+  max-width: 500px;
+  height: 400px; /* Tinggi gambar dibatasi */
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  margin-top: 5px; /* Sedikit dorongan ke bawah agar sejajar */
+}
+
+.feature-image img {
+  width: 100%;
+  height: 100%;
+  /* Memastikan gambar menutupi area tanpa terdistorsi */
+  object-fit: cover;
+  transition: opacity 0.3s ease-in-out; /* Transisi untuk fade */
+}
+
+/* Gaya Item Fitur */
+.feature-item {
+  background-color: #333;
+  color: #fff;
+  padding: 18px 25px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.feature-item:hover {
+  background-color: #444;
+}
+
+.feature-item.active {
+  background-color: #007bff; /* Warna biru aktif */
+  color: white;
+  box-shadow: 0 2px 10px rgba(0, 123, 255, 0.5);
+}
+
+/* Transisi Fade untuk Gambar */
+.feature-image img.fade-out {
+  opacity: 0;
+}
+
+/* --- Responsif untuk Mobile --- */
+@media (max-width: 900px) {
+  .feature-layout {
+    flex-direction: column; /* Tumpuk vertikal di layar kecil */
+  }
+  .feature-list,
+  .feature-image {
+    max-width: 100%; /* Lebar penuh */
+    flex: none;
+  }
+  .feature-image {
+    height: 300px; /* Perkecil tinggi gambar lebih lanjut di mobile */
+    order: -1; /* Pindahkan gambar ke atas daftar fitur di mobile */
+    margin-bottom: 20px;
   }
 }
