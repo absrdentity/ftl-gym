@@ -626,9 +626,9 @@ body {
 }
 
 /* To achieve the blue gradient overlay seen in the image,
-   it's often better to use a pseudo-element or mix-blend-mode
-   if the image is set as background-image.
-   For img tags, a div overlay is easier:
+	it's often better to use a pseudo-element or mix-blend-mode
+	if the image is set as background-image.
+	For img tags, a div overlay is easier:
 */
 .trainer-card::after {
   content: "";
@@ -749,9 +749,6 @@ body {
 .trainer-slider-nav {
   position: absolute;
   top: 50%;
-  /* PENTING: Ubah width dari 100% menjadi kurang dari 100% atau hapus */
-  /* Untuk kasus ini, hapus width dan biarkan tombol mendefinisikan batas */
-  /* width: 100%; <- HAPUS INI */
   transform: translateY(-50%);
   /* Pastikan Z-index tetap tinggi */
   z-index: 50;
@@ -784,9 +781,6 @@ body {
 }
 
 .trainer-next {
-  /* Ubah right: 5px menjadi 0. 
-     Karena nav sekarang memiliki width 100% dari area kartu (bukan dari total wrapper), 
-     right: 0 akan menempatkannya tepat di batas kanan area kartu yang terlihat. */
   right: 0;
 }
 
@@ -858,5 +852,117 @@ body {
 @media only screen and (max-width: 700px) {
   .modal-content {
     width: 100%;
+  }
+}
+
+/* ==================================================================== */
+/* --- NEW WORKOUT SLIDER SECTION STYLES (BARU) --- */
+/* ==================================================================== */
+.workout-slider-section {
+  padding: 60px 0;
+  background-color: #0d0d0d; /* Background gelap agar kontras dengan section di atas/bawah */
+  color: var(--text-light);
+}
+
+.workout-title {
+  font-size: 2.5rem;
+  color: var(--text-light);
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.workout-subtitle {
+  font-size: 1.1rem;
+  color: #aaa;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.new-slider-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.new-slides-wrapper {
+  display: flex;
+  /* Atur transisi untuk geser yang halus */
+  transition: transform 0.5s ease-in-out;
+}
+
+.new-slide {
+  /* Default: Menampilkan 4 slide per view di desktop */
+  flex: 0 0 25%;
+  padding: 0 10px; /* Tambahkan sedikit ruang antar gambar */
+  box-sizing: border-box;
+}
+
+.new-slide img {
+  width: 100%;
+  /* Tinggi gambar tetap agar konsisten, sesuaikan sesuai desain */
+  height: 280px;
+  display: block;
+  border-radius: 8px; /* Sudut membulat */
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.new-slide img:hover {
+  transform: scale(1.03); /* Sedikit efek zoom saat hover */
+}
+
+/* Navigasi (Panah) untuk slider baru */
+.new-slider-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  padding: 0 20px;
+  box-sizing: border-box;
+  pointer-events: none; /* Agar klik bisa menembus ke slide */
+  z-index: 10;
+}
+
+.new-prev,
+.new-next {
+  font-size: 2rem;
+  color: var(--primary-blue);
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  pointer-events: all; /* Mengaktifkan klik pada panah */
+  border: 1px solid var(--primary-blue);
+}
+
+.new-prev:hover,
+.new-next:hover {
+  background-color: rgba(0, 123, 255, 0.2);
+}
+
+/* Media Query untuk tampilan mobile */
+@media (max-width: 768px) {
+  .new-slide {
+    flex: 0 0 100%; /* Menampilkan 1 slide penuh di mobile */
+  }
+  .workout-title {
+    font-size: 2rem;
+  }
+  .new-slide img {
+    height: 220px;
+  }
+  .new-slider-nav {
+    display: none;
+  }
+  .new-prev,
+  .new-next {
+    font-size: 1.5rem;
+    padding: 8px 12px;
   }
 }

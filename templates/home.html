@@ -305,13 +305,93 @@
   <div id="modalCaption"></div>
 </div>
 
-<main class="page-content">
+<section class="workout-slider-section">
   <div class="container">
-    <h2>Transformasi Kebugaran Dimulai Di Sini</h2>
-    <p>Telusuri fitur-fitur utama kami di bawah.</p>
-  </div>
-</main>
+    <h2 class="workout-title">Bring the Excitement Back to Your Workout</h2>
+    <p class="workout-subtitle">
+      Turn your everyday workout into something fun, exciting, and full of
+      energy.
+    </p>
 
+    <div class="new-slider-container">
+      <div class="new-slides-wrapper" id="workoutSlider">
+        <div class="new-slide">
+          <img
+            src="{{ url_for('static', filename='workout_1_treadmill.jpg') }}"
+            alt="Workout Treadmill"
+          />
+        </div>
+        <div class="new-slide">
+          <img
+            src="{{ url_for('static', filename='workout_2_personal_training.jpg') }}"
+            alt="Personal Training Session"
+          />
+        </div>
+        <div class="new-slide">
+          <img
+            src="{{ url_for('static', filename='workout_3_barbell.jpg') }}"
+            alt="Barbell Workout"
+          />
+        </div>
+        <div class="new-slide">
+          <img
+            src="{{ url_for('static', filename='workout_4_yoga.jpg') }}"
+            alt="Group Yoga Class"
+          />
+        </div>
+        <div class="new-slide">
+          <img
+            src="{{ url_for('static', filename='workout_5_dumbbell.jpg') }}"
+            alt="Dumbbell Workout"
+          />
+        </div>
+        <div class="new-slide">
+          <img
+            src="{{ url_for('static', filename='workout_6_stretch.jpg') }}"
+            alt="Stretching Session"
+          />
+        </div>
+        <div class="new-slide">
+          <img
+            src="{{ url_for('static', filename='workout_7_cardio.jpg') }}"
+            alt="Cardio Training"
+          />
+        </div>
+        <div class="new-slide">
+          <img
+            src="{{ url_for('static', filename='workout_8_trx.jpg') }}"
+            alt="TRX Suspension Training"
+          />
+        </div>
+
+        <div class="new-slide">
+          <img
+            src="{{ url_for('static', filename='workout_9_machine.jpg') }}"
+            alt="Machine Training"
+          />
+        </div>
+        <div class="new-slide">
+          <img
+            src="{{ url_for('static', filename='workout_10_cycle.jpg') }}"
+            alt="Indoor Cycling Class"
+          />
+        </div>
+        <div class="new-slide">
+          <img
+            src="{{ url_for('static', filename='workout_11_crossfit.jpg') }}"
+            alt="CrossFit Session"
+          />
+        </div>
+        <div class="new-slide">
+          <img
+            src="{{ url_for('static', filename='workout_12_pool.jpg') }}"
+            alt="Swimming Pool"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <footer
   style="background: #222; color: white; text-align: center; padding: 15px 0"
 >
@@ -526,7 +606,7 @@
     window.addEventListener("resize", updateCardsPerView);
 
     // ====================================================================
-    // --- WHY EXODUS? Feature Tab Logic (BARU) ---
+    // --- WHY EXODUS? Feature Tab Logic (LAMA) ---
     // ====================================================================
     const featureItems = document.querySelectorAll(".feature-item");
     const featureImage = document.getElementById("featureImage");
@@ -553,6 +633,113 @@
           featureImage.classList.remove("fade-out");
         }, 200);
       });
+    });
+
+    // ====================================================================
+    // --- WORKOUT SLIDER LOGIC (BARU, AUTO SLIDE) ---
+    // ====================================================================
+    const workoutSlider = document.getElementById("workoutSlider");
+    const workoutSlides = document.querySelectorAll(
+      ".workout-slider-section .new-slide"
+    );
+    const workoutNext = document.querySelector(".new-next");
+    const workoutPrev = document.querySelector(".new-prev");
+
+    const totalWorkoutSlides = workoutSlides.length;
+    let workoutIndex = 0;
+    let workoutInterval;
+
+    // Fungsi untuk menentukan jumlah slide yang terlihat
+    function getSlidesPerView() {
+      if (window.innerWidth <= 768) {
+        return 1;
+      }
+      return 4; // Default untuk desktop
+    }
+
+    function updateWorkoutSlider() {
+      const slidesPerView = getSlidesPerView();
+      let maxIndex = totalWorkoutSlides - slidesPerView;
+      if (maxIndex < 0) maxIndex = 0; // Pastikan maxIndex tidak negatif
+
+      // Looping index agar tidak melebihi batas
+      if (workoutIndex > maxIndex) {
+        workoutIndex = 0; // Kembali ke awal
+      } else if (workoutIndex < 0) {
+        workoutIndex = maxIndex; // Kembali ke akhir
+      }
+
+      // Hitung lebar per slide dalam persentase
+      const slideWidthPercentage = 100 / slidesPerView;
+      // Hitung nilai translateX
+      const translateXValue = -(workoutIndex * slideWidthPercentage);
+
+      workoutSlider.style.transform = `translateX(${translateXValue}%)`;
+    }
+
+    function startWorkoutAutoSlide() {
+      // Hapus interval sebelumnya jika ada
+      clearInterval(workoutInterval);
+      // Mulai interval baru dengan interval 1000ms (1 detik) - PERCEPATAN DI SINI
+      workoutInterval = setInterval(() => {
+        const slidesPerView = getSlidesPerView();
+        let maxIndex = totalWorkoutSlides - slidesPerView;
+        if (maxIndex < 0) maxIndex = 0;
+
+        if (workoutIndex < maxIndex) {
+          workoutIndex++;
+        } else {
+          workoutIndex = 0; // Looping ke awal
+        }
+        updateWorkoutSlider();
+      }, 1200); // Dipercepat menjadi 1 detik
+    }
+
+    // Navigasi manual untuk slider baru
+    // Meskipun kursor (panah) dihapus dari HTML/CSS, kode ini dipertahankan
+    // agar logika auto-slide dan perhitungan indeks tetap utuh.
+    if (workoutNext) {
+      workoutNext.addEventListener("click", () => {
+        clearInterval(workoutInterval);
+        const slidesPerView = getSlidesPerView();
+        let maxIndex = totalWorkoutSlides - slidesPerView;
+        if (maxIndex < 0) maxIndex = 0;
+
+        if (workoutIndex < maxIndex) {
+          workoutIndex++;
+        } else {
+          workoutIndex = 0;
+        }
+        updateWorkoutSlider();
+        startWorkoutAutoSlide();
+      });
+    }
+
+    if (workoutPrev) {
+      workoutPrev.addEventListener("click", () => {
+        clearInterval(workoutInterval);
+
+        const slidesPerView = getSlidesPerView();
+        let maxIndex = totalWorkoutSlides - slidesPerView;
+        if (maxIndex < 0) maxIndex = 0;
+
+        if (workoutIndex > 0) {
+          workoutIndex--;
+        } else {
+          workoutIndex = maxIndex;
+        }
+
+        updateWorkoutSlider();
+        startWorkoutAutoSlide();
+      });
+    }
+
+    // Update saat halaman dimuat dan diubah ukurannya
+    updateWorkoutSlider();
+    startWorkoutAutoSlide(); // Mulai auto-slide saat halaman dimuat
+    window.addEventListener("resize", () => {
+      updateWorkoutSlider();
+      startWorkoutAutoSlide(); // Reset auto-slide saat resize
     });
   });
 </script>
