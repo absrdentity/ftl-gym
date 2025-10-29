@@ -1,206 +1,322 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html' %} {% block head %}
+<title>EXODUS GYM - Home</title>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+/>
+{% endblock %} {% block body %}
+<header class="main-header">
+  <div class="container header-content">
+    <a href="/" class="logo-text">EXODUS GYM</a>
 
-{% block head %}
-  <title>EXODUS GYM - Home</title>
-{% endblock %}
+    <nav class="main-nav">
+      <ul>
+        <li><a href="/" class="home-link active">Home</a></li>
+        <li>
+          <a href="/membership" class="membership-link">Membership</a>
+        </li>
+        <li><a href="/our-clubs" class="clubs-link">Our Clubs</a></li>
+      </ul>
+    </nav>
 
-{% block body %}
-    <header class="main-header">
-      <div class="container header-content">
-        <a href="/" class="logo-text">EXODUS GYM</a>
+    {% if session.member %}
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle" id="userDropdown">
+        {{ session.member.name }}
+        <i class="bi bi-caret-down-fill"></i>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <a
+            href="{{ url_for('member_home', name=session.member.name, package=session.member.package, email=session.member.email, phone=session.member.phone) }}"
+            >Profile</a
+          >
+        </li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      </ul>
+    </div>
+    {% else %}
+    <a href="/join" class="btn-join">Join Now</a>
+    {% endif %}
+  </div>
+</header>
 
-        <nav class="main-nav">
-          <ul>
-            <li><a href="/" class="home-link active">Home</a></li>
-            <li>
-              <a href="/membership" class="membership-link">Membership</a>
-            </li>
-            <li><a href="/our-clubs" class="clubs-link">Our Clubs</a></li>
-          </ul>
-        </nav>
+<section class="hero-section">
+  <div class="slider-container">
+    <div
+      class="slide active"
+      style="background-image: url('{{ url_for('static', filename='gedung.webp') }}');"
+    ></div>
+    <div
+      class="slide"
+      style="background-image: url('{{ url_for('static', filename='boxing.jpg') }}');"
+    ></div>
+    <div
+      class="slide"
+      style="background-image: url('{{ url_for('static', filename='renang.jpg') }}');"
+    ></div>
+  </div>
 
-        {% if session.member %}
-          <div class="dropdown">
-            <a href="#" class="dropdown-toggle" id="userDropdown">
-              {{ session.member.name }}
-              <i class="bi bi-caret-down-fill"></i>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="{{ url_for('member_home', name=session.member.name, package=session.member.package, email=session.member.email, phone=session.member.phone) }}">Profile</a></li>
-              <li><a href="{{ url_for('logout') }}">Logout</a></li>
-            </ul>
-          </div>
-        {% else %}
-          <a href="/join" class="btn-join">Join Now</a>
-        {% endif %}
-      </div>
-    </header>
-
-    <section class="hero-section">
-      <div class="slider-container">
-        <div class="slide active" style="background-image: url('{{ url_for('static', filename='gedung.webp') }}');"></div>
-        <div class="slide" style="background-image: url('{{ url_for('static', filename='boxing.jpg') }}');"></div>
-        <div class="slide" style="background-image: url('{{ url_for('static', filename='renang.jpg') }}');"></div>
-      </div>
-    </section>
-
-      
-      <div class="hero-text-content">
-        <h1 class="hero-title text-light">
-          ALL-IN GYM<br />
-          EXPERIENCE
-        </h1>
-        <p
-          class="hero-subtitle text-light"
-          style="font-size: 1.1rem; font-weight: 400; margin-bottom: 25px">
-          Not Just a Gym — It's Your Lifestyle Upgrade
-        </p>
-        <a href="/join" class="btn-register">Register Now</a>
-      </div>
-
-      <div class="slider-nav">
-        <span class="prev">&#10094;</span> <span class="next">&#10095;</span>
-      </div>
-
-      <div class="slider-dots">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
-    </section>
-
-    <main class="page-content">
-      <div class="container">
-        <section class="guarantee-section">
-          <div class="guarantee-text">
-            <h2>EXODUS MONEY BACK<br />GUARANTEE<br />PROGRAM</h2>
-          </div>
-          <div class="guarantee-details">
-            <h3>We've Got You Covered.</h3>
-            <p>
-              In the unlikely event that your home club permanently closes, EXODUS
-              ensures a full refund of your unused membership period and
-              Personal Training sessions — because your trust matters most.
-            </p>
-            <a href="/join" class="btn-join-guarantee">Join Now</a>
-          </div>
-        </section>
-        <section class="guarantee-section"></section>
-
-        <section class="why-ftl-section">
-          <div class="container">
-            <h2 class="why-ftl-title">WHY EXODUS?</h2>
-            <p class="why-ftl-subtitle">
-              EXODUS offers complete facilities, professional personal trainers,
-              and flexible memberships designed to fit your needs.
-            </p>
-
-            <div class="feature-layout">
-              <div class="feature-list">
-                <div class="feature-item active">
-                  Unlimited 24/7 access to all EXODUS clubs nationwide
-                </div>
-                <div class="feature-item">
-                  6000+ Group Exercise Classes every month
-                </div>
-                <div class="feature-item">
-                  Wellness facilities: Sauna, Steam, Jacuzzi & Onsen
-                </div>
-                <div class="feature-item">
-                  Indonesia's largest Group Pilates program
-                </div>
-                <div class="feature-item">EXODUS Money-Back Guarantee Program</div>
-              </div>
-
-              <div class="feature-image">
-                <img src="playground.jpg" alt="Playground Fitness Area" />
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </main>
-
-    <main class="page-content">
-      <div class="container">
-        <h2>Transformasi Kebugaran Dimulai Di Sini</h2>
-        <p>Telusuri fitur-fitur utama kami di bawah.</p>
-      </div>
-    </main>
-
-    <footer
-      style="
-        background: #222;
-        color: white;
-        text-align: center;
-        padding: 15px 0;
-      "
+  <div class="hero-text-content">
+    <h1 class="hero-title text-light">
+      ALL-IN GYM<br />
+      EXPERIENCE
+    </h1>
+    <p
+      class="hero-subtitle text-light"
+      style="font-size: 1.1rem; font-weight: 400; margin-bottom: 25px"
     >
-      <div class="container">
-        <p>&copy; 2025 EXODUS GYM. All rights reserved.</p>
+      Not Just a Gym — It's Your Lifestyle Upgrade
+    </p>
+    <a href="/join" class="btn-register">Register Now</a>
+  </div>
+
+  <div class="slider-nav">
+    <span class="prev">&#10094;</span> <span class="next">&#10095;</span>
+  </div>
+
+  <div class="slider-dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</section>
+
+<main class="page-content">
+  <div class="container">
+    <section class="guarantee-section">
+      <div class="guarantee-text">
+        <h2>EXODUS MONEY BACK<br />GUARANTEE<br />PROGRAM</h2>
       </div>
-    </footer>
+      <div class="guarantee-details">
+        <h3>We've Got You Covered.</h3>
+        <p>
+          In the unlikely event that your home club permanently closes, EXODUS
+          ensures a full refund of your unused membership period and Personal
+          Training sessions — because your trust matters most.
+        </p>
+        <a href="/join" class="btn-join-guarantee">Join Now</a>
+      </div>
+    </section>
+    <section class="why-ftl-section">
+      <div class="container">
+        <h2 class="why-ftl-title">WHY EXODUS?</h2>
+        <p class="why-ftl-subtitle">
+          EXODUS offers complete facilities, professional personal trainers, and
+          flexible memberships designed to fit your needs.
+        </p>
+
+        <div class="feature-layout">
+          <div class="feature-list">
+            <div class="feature-item active">
+              Unlimited 24/7 access to all EXODUS clubs nationwide
+            </div>
+            <div class="feature-item">
+              6000+ Group Exercise Classes every month
+            </div>
+            <div class="feature-item">
+              Wellness facilities: Sauna, Steam, Jacuzzi & Onsen
+            </div>
+            <div class="feature-item">
+              Indonesia's largest Group Pilates program
+            </div>
+            <div class="feature-item">EXODUS Money-Back Guarantee Program</div>
+          </div>
+
+          <div class="feature-image">
+            <img
+              src="{{ url_for('static', filename='playground.jpg') }}"
+              alt="Playground Fitness Area"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<section class="trainers-section">
+  <div class="container">
+    <div class="trainer-header-content">
+      <div class="trainer-header-left">
+        <h2 class="trainers-title">Meet our Certified Personal Trainers</h2>
+        <ul class="trainer-program-list">
+          <li>Weight & Fat Loss</li>
+          <li>Build Muscle</li>
+          <li>Weight Gain</li>
+          <li>Strength and Power</li>
+          <li>Body Shaping</li>
+          <li>Posturing</li>
+          <li>Muay Thai Program</li>
+          <li>Boxing</li>
+          <li>Rehabilitation</li>
+          <li>Mobility and Balance</li>
+          <li>High Intensity Interval Training (HIIT)</li>
+          <li>Weight Management</li>
+        </ul>
+        <p class="more-programs">And more customized programs.</p>
+      </div>
+      <div class="trainer-header-right">
+        <p class="trainer-intro">
+          Every session is guided by trainers with trusted national and
+          international certifications.
+        </p>
+        <div class="cert-logos">
+          <img
+            src="{{ url_for('static', filename='issa_logo.png') }}"
+            alt="ISSA Certification"
+            class="cert-logo"
+          />
+          <img
+            src="{{ url_for('static', filename='nasm_logo.png') }}"
+            alt="NASM Certification"
+            class="cert-logo"
+          />
+        </div>
+        <a href="/join" class="btn-join trainer-join-btn">Join Now</a>
+      </div>
+    </div>
+
+    <div class="trainer-cards-grid">
+      <div class="trainer-card">
+        <img
+          src="{{ url_for('static', filename='trainer_zaenab.jpg') }}"
+          alt="Zaenab - Personal Trainer"
+          class="trainer-photo"
+        />
+        <div class="trainer-info">
+          <h3 class="trainer-name">Zaenab</h3>
+          <p class="trainer-role">Personal Trainer</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <img
+          src="{{ url_for('static', filename='trainer_jevery.jpg') }}"
+          alt="Jevery - Personal Trainer"
+          class="trainer-photo"
+        />
+        <div class="trainer-info">
+          <h3 class="trainer-name">Jevery</h3>
+          <p class="trainer-role">Personal Trainer</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <img
+          src="{{ url_for('static', filename='trainer_rival.jpg') }}"
+          alt="Rival - Personal Trainer"
+          class="trainer-photo"
+        />
+        <div class="trainer-info">
+          <h3 class="trainer-name">Rival</h3>
+          <p class="trainer-role">Personal Trainer</p>
+        </div>
+      </div>
+      <div class="trainer-card">
+        <img
+          src="{{ url_for('static', filename='trainer_rani.jpg') }}"
+          alt="Rani - Personal Trainer"
+          class="trainer-photo"
+        />
+        <div class="trainer-info">
+          <h3 class="trainer-name">Rani</h3>
+          <p class="trainer-role">Personal Trainer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="page-content">
+  <div class="container">
+    <h2>Transformasi Kebugaran Dimulai Di Sini</h2>
+    <p>Telusuri fitur-fitur utama kami di bawah.</p>
+  </div>
+</main>
+
+<footer
+  style="background: #222; color: white; text-align: center; padding: 15px 0"
+>
+  <div class="container">
+    <p>&copy; 2025 EXODUS GYM. All rights reserved.</p>
+  </div>
+</footer>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      let slides = document.querySelectorAll(".slide");
-      let dots = document.querySelectorAll(".dot");
-      let currentIndex = 0;
-      let interval;
+  document.addEventListener("DOMContentLoaded", function () {
+    // --- Slider Logic ---
+    let slides = document.querySelectorAll(".slide");
+    let dots = document.querySelectorAll(".dot");
+    let currentIndex = 0;
+    let interval;
 
-      function showSlide(index) {
-        slides.forEach((slide, i) => {
-          slide.classList.toggle("active", i === index);
-          dots[i].classList.toggle("active", i === index);
-        });
-        currentIndex = index;
-      }
-
-      function nextSlide() {
-        let newIndex = (currentIndex + 1) % slides.length;
-        showSlide(newIndex);
-      }
-
-      function prevSlide() {
-        let newIndex = (currentIndex - 1 + slides.length) % slides.length;
-        showSlide(newIndex);
-      }
-
-      function startAutoSlide() {
-        interval = setInterval(nextSlide, 4000); // auto slide every 4 seconds
-      }
-
-      function stopAutoSlide() {
-        clearInterval(interval);
-      }
-
-      // Buttons
-      document.querySelector(".next").addEventListener("click", () => {
-        stopAutoSlide();
-        nextSlide();
-        startAutoSlide();
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+        dots[i].classList.toggle("active", i === index);
       });
+      currentIndex = index;
+    }
 
-      document.querySelector(".prev").addEventListener("click", () => {
-        stopAutoSlide();
-        prevSlide();
-        startAutoSlide();
-      });
+    function nextSlide() {
+      let newIndex = (currentIndex + 1) % slides.length;
+      showSlide(newIndex);
+    }
 
-      // Dots navigation
-      dots.forEach((dot, i) => {
-        dot.addEventListener("click", () => {
-          stopAutoSlide();
-          showSlide(i);
-          startAutoSlide();
-        });
-      });
+    function prevSlide() {
+      let newIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(newIndex);
+    }
 
-      // Start slider
-      showSlide(currentIndex);
+    function startAutoSlide() {
+      interval = setInterval(nextSlide, 4000); // auto slide every 4 seconds
+    }
+
+    function stopAutoSlide() {
+      clearInterval(interval);
+    }
+
+    // Slider Events
+    document.querySelector(".next").addEventListener("click", () => {
+      stopAutoSlide();
+      nextSlide();
       startAutoSlide();
     });
+
+    document.querySelector(".prev").addEventListener("click", () => {
+      stopAutoSlide();
+      prevSlide();
+      startAutoSlide();
+    });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        stopAutoSlide();
+        showSlide(i);
+        startAutoSlide();
+      });
+    });
+
+    // Start slider
+    showSlide(currentIndex);
+    startAutoSlide();
+
+    // --- Dropdown Logic (for logged-in user) ---
+    const userDropdown = document.getElementById("userDropdown");
+    if (userDropdown) {
+      userDropdown.addEventListener("click", function (e) {
+        e.preventDefault();
+        this.parentElement.classList.toggle("active");
+      });
+
+      // Close dropdown if user clicks outside
+      document.addEventListener("click", function (e) {
+        const dropdown = document.querySelector(".dropdown");
+        if (dropdown && !dropdown.contains(e.target)) {
+          dropdown.classList.remove("active");
+        }
+      });
+    }
+  });
 </script>
 
 {% endblock %}
-

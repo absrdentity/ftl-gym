@@ -166,8 +166,12 @@ body {
   z-index: 5;
 }
 
-.slider-nav .prev { left: 20px; }
-.slider-nav .next { right: 20px; }
+.slider-nav .prev {
+  left: 20px;
+}
+.slider-nav .next {
+  right: 20px;
+}
 
 .slider-dots {
   text-align: center;
@@ -187,7 +191,6 @@ body {
 .slider-dots .dot.active {
   background-color: #007bff;
 }
-
 
 /* Modifikasi agar teks Register Now terlihat benar */
 .btn-register {
@@ -452,7 +455,7 @@ body {
   padding: 10px 0;
   min-width: 150px;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   z-index: 100;
 }
 
@@ -474,4 +477,247 @@ body {
 /* Show the dropdown when active */
 .dropdown.active .dropdown-menu {
   display: block;
+}
+
+/* Add this CSS to your style.css file */
+
+/* --- Trainers Section --- */
+.trainers-section {
+  background-color: var(--bg-dark); /* Dark background */
+  padding: 80px 0;
+  color: var(--text-light);
+}
+
+.trainer-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items to the top */
+  gap: 50px;
+  margin-bottom: 60px; /* Space between header and trainer cards */
+}
+
+.trainer-header-left {
+  flex: 2; /* Takes more space */
+}
+
+.trainers-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin-bottom: 25px;
+  line-height: 1.2;
+}
+
+.trainer-program-list {
+  list-style: none; /* Remove default bullet points */
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  gap: 15px 25px; /* Vertical and horizontal gap */
+  margin-bottom: 20px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #cccccc;
+}
+
+.trainer-program-list li {
+  position: relative;
+  padding-left: 15px; /* Space for custom bullet */
+}
+
+.trainer-program-list li::before {
+  content: "•"; /* Custom bullet point */
+  color: var(--primary-blue); /* Blue bullet */
+  position: absolute;
+  left: 0;
+}
+
+.more-programs {
+  font-size: 0.95rem;
+  color: #cccccc;
+  margin-top: 15px;
+}
+
+.trainer-header-right {
+  flex: 1; /* Takes less space */
+  text-align: right;
+  padding-top: 10px; /* Align with the title slightly */
+}
+
+.trainer-intro {
+  font-size: 1rem;
+  margin-bottom: 25px;
+  color: #cccccc;
+  line-height: 1.6;
+}
+
+.cert-logos {
+  display: flex;
+  justify-content: flex-end; /* Align logos to the right */
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.cert-logo {
+  height: 40px; /* Adjust as needed */
+  filter: brightness(0) invert(1); /* Make logos white if they are dark */
+  opacity: 0.8;
+}
+
+.trainer-join-btn {
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  background-color: var(--primary-blue);
+  color: var(--text-light);
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.trainer-join-btn:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+}
+
+.trainer-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  ); /* Responsive grid */
+  gap: 30px;
+}
+
+.trainer-card {
+  background: linear-gradient(
+    135deg,
+    #0f0f0f,
+    #222222
+  ); /* Subtle gradient for card background */
+  border-radius: 12px;
+  overflow: hidden; /* Ensures image corners are rounded */
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  padding-bottom: 20px; /* Space for text below image */
+}
+
+.trainer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6);
+}
+
+.trainer-photo {
+  width: 100%;
+  height: 350px; /* Fixed height for trainer images */
+  object-fit: cover; /* Crop images to fit */
+  display: block;
+  margin-bottom: 20px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  /* Adding the blue gradient overlay effect */
+  background: linear-gradient(
+      to top,
+      rgba(0, 123, 255, 0.8) 0%,
+      rgba(0, 123, 255, 0) 50%
+    ),
+    url("path/to/image.jpg"); /* This needs to be done via a pseudo-element or mix-blend-mode if you want a true overlay like in the image */
+  background-size: cover;
+  background-position: center;
+}
+
+/* To achieve the blue gradient overlay seen in the image,
+   it's often better to use a pseudo-element or mix-blend-mode
+   if the image is set as background-image.
+   For img tags, a div overlay is easier:
+*/
+.trainer-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 123, 255, 0.6) 0%,
+    rgba(0, 123, 255, 0) 50%
+  ); /* Blue gradient from bottom to top */
+  z-index: 1; /* Above image, below text */
+  pointer-events: none; /* Allows clicks to pass through */
+  border-radius: 12px; /* Match card border-radius */
+}
+
+.trainer-photo {
+  position: relative; /* For the gradient effect */
+  z-index: 0;
+  height: 350px; /* Keep fixed height */
+  filter: brightness(0.8); /* Slightly darken image under gradient */
+}
+
+.trainer-info {
+  position: absolute; /* Position over the image */
+  bottom: 20px; /* From the bottom of the card */
+  left: 0;
+  width: 100%;
+  text-align: left; /* Align text to the left as in image */
+  padding: 0 20px; /* Padding from sides */
+  z-index: 2; /* Above the gradient */
+}
+
+.trainer-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-light);
+  margin-bottom: 5px;
+}
+
+.trainer-role {
+  font-size: 0.95rem;
+  color: #b0b0b0; /* Lighter grey for role */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive adjustments for Trainers Section */
+@media (max-width: 992px) {
+  .trainer-header-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+  }
+  .trainer-header-right {
+    text-align: center; /* Center align for smaller screens */
+    padding-top: 0;
+  }
+  .cert-logos {
+    justify-content: center; /* Center logos on smaller screens */
+  }
+  .trainers-title {
+    font-size: 2.2rem;
+  }
+  .trainer-program-list {
+    justify-content: center;
+  }
+  .trainer-program-list li {
+    padding-left: 0; /* Remove padding if not using custom bullet */
+  }
+  .trainer-program-list li::before {
+    content: none; /* Remove custom bullet on smaller screens or adjust */
+  }
+}
+
+@media (max-width: 768px) {
+  .trainers-section {
+    padding: 60px 0;
+  }
+  .trainers-title {
+    font-size: 2rem;
+  }
+  .trainer-cards-grid {
+    grid-template-columns: 1fr; /* Stack cards on very small screens */
+  }
+  .trainer-photo {
+    height: 300px; /* Slightly smaller images on mobile */
+  }
 }
