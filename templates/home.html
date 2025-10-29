@@ -45,23 +45,26 @@
   <div class="slider-container">
     <div
       class="slide active"
-      style="background-image: url('{{ url_for('static', filename='gedung.webp') }}');"
+      style="
+        background-image: url('{{ url_for('static', filename='gedung.webp') }}');
+      "
     ></div>
     <div
       class="slide"
-      style="background-image: url('{{ url_for('static', filename='boxing.jpg') }}');"
+      style="
+        background-image: url('{{ url_for('static', filename='boxing.jpg') }}');
+      "
     ></div>
     <div
       class="slide"
-      style="background-image: url('{{ url_for('static', filename='renang.jpg') }}');"
+      style="
+        background-image: url('{{ url_for('static', filename='renang.jpg') }}');
+      "
     ></div>
   </div>
 
   <div class="hero-text-content">
-    <h1 class="hero-title text-light">
-      ALL-IN GYM<br />
-      EXPERIENCE
-    </h1>
+    <h1 class="hero-title text-light">ALL-IN GYM<br />EXPERIENCE</h1>
     <p
       class="hero-subtitle text-light"
       style="font-size: 1.1rem; font-weight: 400; margin-bottom: 25px"
@@ -98,6 +101,7 @@
         <a href="/join" class="btn-join-guarantee">Join Now</a>
       </div>
     </section>
+
     <section class="why-ftl-section">
       <div class="container">
         <h2 class="why-ftl-title">WHY EXODUS?</h2>
@@ -108,25 +112,43 @@
 
         <div class="feature-layout">
           <div class="feature-list">
-            <div class="feature-item active">
+            <div
+              class="feature-item active"
+              data-image="{{ url_for('static', filename='club_access.jpg') }}"
+            >
               Unlimited 24/7 access to all EXODUS clubs nationwide
             </div>
-            <div class="feature-item">
+            <div
+              class="feature-item"
+              data-image="{{ url_for('static', filename='group_class.jpg') }}"
+            >
               6000+ Group Exercise Classes every month
             </div>
-            <div class="feature-item">
+            <div
+              class="feature-item"
+              data-image="{{ url_for('static', filename='wellness.jpg') }}"
+            >
               Wellness facilities: Sauna, Steam, Jacuzzi & Onsen
             </div>
-            <div class="feature-item">
+            <div
+              class="feature-item"
+              data-image="{{ url_for('static', filename='pilates.jpg') }}"
+            >
               Indonesia's largest Group Pilates program
             </div>
-            <div class="feature-item">EXODUS Money-Back Guarantee Program</div>
+            <div
+              class="feature-item"
+              data-image="{{ url_for('static', filename='guarantee_feat.jpg') }}"
+            >
+              EXODUS Money-Back Guarantee Program
+            </div>
           </div>
 
           <div class="feature-image">
             <img
-              src="{{ url_for('static', filename='playground.jpg') }}"
-              alt="Playground Fitness Area"
+              id="featureImage"
+              src="{{ url_for('static', filename='club_access.jpg') }}"
+              alt="EXODUS Feature Highlight"
             />
           </div>
         </div>
@@ -177,54 +199,111 @@
       </div>
     </div>
 
-    <div class="trainer-cards-grid">
-      <div class="trainer-card">
-        <img
-          src="{{ url_for('static', filename='trainer_zaenab.jpg') }}"
-          alt="Zaenab - Personal Trainer"
-          class="trainer-photo"
-        />
-        <div class="trainer-info">
-          <h3 class="trainer-name">Zaenab</h3>
-          <p class="trainer-role">Personal Trainer</p>
+    <div class="trainer-slider-wrapper">
+      <div class="trainer-cards-grid">
+        <div class="trainer-card" data-index="0">
+          <img
+            src="{{ url_for('static', filename='trainer_zaenab.jpg') }}"
+            alt="Zaenab - Personal Trainer"
+            class="trainer-photo"
+          />
+          <div class="trainer-info">
+            <h3 class="trainer-name">Zaenab</h3>
+            <p class="trainer-role">Personal Trainer</p>
+          </div>
+        </div>
+        <div class="trainer-card" data-index="1">
+          <img
+            src="{{ url_for('static', filename='trainer_jevery.jpg') }}"
+            alt="Jevery - Personal Trainer"
+            class="trainer-photo"
+          />
+          <div class="trainer-info">
+            <h3 class="trainer-name">Jevery</h3>
+            <p class="trainer-role">Personal Trainer</p>
+          </div>
+        </div>
+        <div class="trainer-card" data-index="2">
+          <img
+            src="{{ url_for('static', filename='trainer_rival.jpg') }}"
+            alt="Rival - Personal Trainer"
+            class="trainer-photo"
+          />
+          <div class="trainer-info">
+            <h3 class="trainer-name">Rival</h3>
+            <p class="trainer-role">Personal Trainer</p>
+          </div>
+        </div>
+        <div class="trainer-card" data-index="3">
+          <img
+            src="{{ url_for('static', filename='trainer_rani.jpg') }}"
+            alt="Rani - Personal Trainer"
+            class="trainer-photo"
+          />
+          <div class="trainer-info">
+            <h3 class="trainer-name">Rani</h3>
+            <p class="trainer-role">Personal Trainer</p>
+          </div>
+        </div>
+        <div class="trainer-card" data-index="4">
+          <img
+            src="{{ url_for('static', filename='trainer_joko.jpg') }}"
+            alt="Joko - Master Trainer"
+            class="trainer-photo"
+          />
+          <div class="trainer-info">
+            <h3 class="trainer-name">Joko</h3>
+            <p class="trainer-role">Master Trainer</p>
+          </div>
+        </div>
+        <div class="trainer-card" data-index="5">
+          <img
+            src="{{ url_for('static', filename='trainer_sinta.jpg') }}"
+            alt="Sinta - Personal Trainer"
+            class="trainer-photo"
+          />
+          <div class="trainer-info">
+            <h3 class="trainer-name">Sinta</h3>
+            <p class="trainer-role">Personal Trainer</p>
+          </div>
+        </div>
+        <div class="trainer-card" data-index="6">
+          <img
+            src="{{ url_for('static', filename='trainer_bima.jpg') }}"
+            alt="Bima - Strength Coach"
+            class="trainer-photo"
+          />
+          <div class="trainer-info">
+            <h3 class="trainer-name">Bima</h3>
+            <p class="trainer-role">Strength Coach</p>
+          </div>
+        </div>
+        <div class="trainer-card" data-index="7">
+          <img
+            src="{{ url_for('static', filename='trainer_fitri.jpg') }}"
+            alt="Fitri - Group Class Instructor"
+            class="trainer-photo"
+          />
+          <div class="trainer-info">
+            <h3 class="trainer-name">Fitri</h3>
+            <p class="trainer-role">Group Class Instructor</p>
+          </div>
         </div>
       </div>
-      <div class="trainer-card">
-        <img
-          src="{{ url_for('static', filename='trainer_jevery.jpg') }}"
-          alt="Jevery - Personal Trainer"
-          class="trainer-photo"
-        />
-        <div class="trainer-info">
-          <h3 class="trainer-name">Jevery</h3>
-          <p class="trainer-role">Personal Trainer</p>
-        </div>
-      </div>
-      <div class="trainer-card">
-        <img
-          src="{{ url_for('static', filename='trainer_rival.jpg') }}"
-          alt="Rival - Personal Trainer"
-          class="trainer-photo"
-        />
-        <div class="trainer-info">
-          <h3 class="trainer-name">Rival</h3>
-          <p class="trainer-role">Personal Trainer</p>
-        </div>
-      </div>
-      <div class="trainer-card">
-        <img
-          src="{{ url_for('static', filename='trainer_rani.jpg') }}"
-          alt="Rani - Personal Trainer"
-          class="trainer-photo"
-        />
-        <div class="trainer-info">
-          <h3 class="trainer-name">Rani</h3>
-          <p class="trainer-role">Personal Trainer</p>
-        </div>
+
+      <div class="trainer-slider-nav">
+        <span class="trainer-prev">&#10094;</span>
+        <span class="trainer-next">&#10095;</span>
       </div>
     </div>
   </div>
 </section>
+
+<div id="trainerModal" class="modal">
+  <span class="close-btn">&times;</span>
+  <img class="modal-content" id="modalImage" />
+  <div id="modalCaption"></div>
+</div>
 
 <main class="page-content">
   <div class="container">
@@ -243,7 +322,7 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // --- Slider Logic ---
+    // --- Hero Slider Logic (Kode Asli Anda) ---
     let slides = document.querySelectorAll(".slide");
     let dots = document.querySelectorAll(".dot");
     let currentIndex = 0;
@@ -316,6 +395,165 @@
         }
       });
     }
+
+    // ====================================================================
+    // --- TRAINER SLIDER & ZOOM LOGIC (DENGAN TOUCH/SWIPE) ---
+    // ====================================================================
+    const trainerWrapper = document.querySelector(".trainer-slider-wrapper");
+    const trainerGrid = document.querySelector(".trainer-cards-grid");
+    const trainerCards = document.querySelectorAll(".trainer-card");
+    const trainerPrev = document.querySelector(".trainer-prev");
+    const trainerNext = document.querySelector(".trainer-next");
+
+    const CARD_WIDTH = 310;
+    const TOTAL_CARDS = trainerCards.length;
+    let trainerIndex = 0;
+    let cardsPerView = 0;
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const SWIPE_THRESHOLD = 50;
+
+    function updateCardsPerView() {
+      cardsPerView = Math.floor(trainerWrapper.offsetWidth / CARD_WIDTH);
+      if (cardsPerView <= 0) cardsPerView = 1;
+
+      if (trainerIndex > TOTAL_CARDS - cardsPerView) {
+        trainerIndex = TOTAL_CARDS - cardsPerView;
+        if (trainerIndex < 0) trainerIndex = 0;
+      }
+      updateTrainerSlider();
+    }
+
+    function updateTrainerSlider() {
+      const offset = -(trainerIndex * CARD_WIDTH);
+      trainerGrid.style.transform = `translateX(${offset}px)`;
+
+      trainerPrev.style.opacity = trainerIndex > 0 ? "1" : "0.5";
+      trainerNext.style.opacity =
+        trainerIndex < TOTAL_CARDS - cardsPerView ? "1" : "0.5";
+    }
+
+    trainerNext.addEventListener("click", () => {
+      if (trainerIndex < TOTAL_CARDS - cardsPerView) {
+        trainerIndex++;
+      } else {
+        trainerIndex = 0;
+      }
+      updateTrainerSlider();
+    });
+
+    trainerPrev.addEventListener("click", () => {
+      if (trainerIndex > 0) {
+        trainerIndex--;
+      } else {
+        trainerIndex = TOTAL_CARDS - cardsPerView;
+      }
+      updateTrainerSlider();
+    });
+
+    // --- Logika Sentuhan/Swipe ---
+    trainerWrapper.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0].clientX;
+      trainerGrid.style.transition = "none";
+    });
+
+    trainerWrapper.addEventListener("touchmove", (e) => {
+      touchEndX = e.touches[0].clientX;
+      const currentTranslate = -trainerIndex * CARD_WIDTH;
+      const dragDistance = touchEndX - touchStartX;
+
+      trainerGrid.style.transform = `translateX(${
+        currentTranslate + dragDistance
+      }px)`;
+    });
+
+    trainerWrapper.addEventListener("touchend", () => {
+      trainerGrid.style.transition = "transform 0.5s ease-in-out";
+
+      const dragDistance = touchEndX - touchStartX;
+
+      if (dragDistance > SWIPE_THRESHOLD && trainerIndex > 0) {
+        trainerIndex--;
+      } else if (
+        dragDistance < -SWIPE_THRESHOLD &&
+        trainerIndex < TOTAL_CARDS - cardsPerView
+      ) {
+        trainerIndex++;
+      }
+
+      updateTrainerSlider();
+
+      touchStartX = 0;
+      touchEndX = 0;
+    });
+
+    // --- Trainer Zoom (Modal) Logic ---
+    const modal = document.getElementById("trainerModal");
+    const modalImg = document.getElementById("modalImage");
+    const captionText = document.getElementById("modalCaption");
+    const closeBtn = document.querySelector(".close-btn");
+
+    trainerCards.forEach((card) => {
+      card.addEventListener("click", function () {
+        if (Math.abs(touchEndX - touchStartX) < 10) {
+          modal.style.display = "block";
+
+          const imgElement = this.querySelector(".trainer-photo");
+          const name = this.querySelector(".trainer-name").textContent;
+          const role = this.querySelector(".trainer-role").textContent;
+
+          modalImg.src = imgElement.src;
+          captionText.innerHTML = `<strong>${name}</strong> - ${role}<br>Klik di luar gambar atau 'x' untuk menutup.`;
+        }
+      });
+    });
+
+    // Tutup modal ketika tombol 'x' diklik
+    closeBtn.onclick = function () {
+      modal.style.display = "none";
+    };
+
+    // Tutup modal ketika area gelap (di luar gambar) diklik
+    modal.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
+
+    // Update slider saat halaman dimuat dan diubah ukurannya
+    updateCardsPerView();
+    window.addEventListener("resize", updateCardsPerView);
+
+    // ====================================================================
+    // --- WHY EXODUS? Feature Tab Logic (BARU) ---
+    // ====================================================================
+    const featureItems = document.querySelectorAll(".feature-item");
+    const featureImage = document.getElementById("featureImage");
+
+    featureItems.forEach((item) => {
+      item.addEventListener("click", function () {
+        // 1. Hapus kelas 'active' dari semua item
+        featureItems.forEach((i) => i.classList.remove("active"));
+
+        // 2. Tambahkan kelas 'active' pada item yang baru diklik
+        this.classList.add("active");
+
+        // 3. Ambil path gambar dari atribut data-image
+        const newImageSrc = this.getAttribute("data-image");
+
+        // 4. Perbarui sumber gambar (dengan efek transisi halus)
+        // Tambahkan kelas 'fade-out' untuk transisi
+        featureImage.classList.add("fade-out");
+
+        // Atur waktu tunggu sebentar (misalnya 200ms) untuk transisi opacity
+        setTimeout(() => {
+          featureImage.src = newImageSrc;
+          // Hapus kelas 'fade-out' untuk memicu transisi fade-in
+          featureImage.classList.remove("fade-out");
+        }, 200);
+      });
+    });
   });
 </script>
 

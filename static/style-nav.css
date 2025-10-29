@@ -721,3 +721,142 @@ body {
     height: 300px; /* Slightly smaller images on mobile */
   }
 }
+
+/* --- Penyesuaian CSS untuk Slider Trainer --- */
+.trainer-slider-wrapper {
+  position: relative;
+  overflow: hidden; /* Tetap hidden untuk efek slider */
+  padding: 0 40px; /* Jarak 40px ini yang berpotensi menyembunyikan tombol */
+}
+
+/* Matikan Grid bawaan dan gunakan Flexbox untuk geser horizontal */
+.trainer-cards-grid {
+  display: flex; /* Mengubah dari grid ke flex untuk geser */
+  gap: 30px;
+  transition: transform 0.5s ease-in-out; /* Transisi untuk efek geser */
+  padding: 10px 0; /* Padding vertikal */
+}
+
+/* Tetapkan lebar minimum untuk kartu agar flexbox tidak merusak ukuran */
+.trainer-card {
+  min-width: 280px; /* Lebar minimum yang ditentukan untuk setiap kartu */
+  max-width: 280px; /* Memastikan semua kartu memiliki lebar yang sama */
+  flex-shrink: 0; /* Mencegah kartu menyusut */
+  cursor: pointer; /* Menunjukkan bahwa kartu bisa di-klik (untuk zoom) */
+}
+
+/* Navigasi Slider Trainer */
+.trainer-slider-nav {
+  position: absolute;
+  top: 50%;
+  /* PENTING: Ubah width dari 100% menjadi kurang dari 100% atau hapus */
+  /* Untuk kasus ini, hapus width dan biarkan tombol mendefinisikan batas */
+  /* width: 100%; <- HAPUS INI */
+  transform: translateY(-50%);
+  /* Pastikan Z-index tetap tinggi */
+  z-index: 50;
+  /* Atur agar nav mencakup seluruh area wrapper */
+  width: calc(
+    100% - 80px
+  ); /* 100% dikurangi total padding 40px kiri dan 40px kanan */
+  left: 40px; /* Mulai dari batas padding kiri */
+  pointer-events: none;
+}
+
+.trainer-slider-nav span {
+  position: absolute;
+  cursor: pointer;
+  font-size: 2.5rem;
+  color: var(--primary-blue);
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  transition: background-color 0.3s;
+  pointer-events: all;
+}
+
+.trainer-slider-nav span:hover {
+  background-color: rgba(0, 123, 255, 0.2);
+}
+
+.trainer-prev {
+  left: 0; /* Ubah dari 5px menjadi 0 agar pas di tepi padding */
+}
+
+.trainer-next {
+  /* Ubah right: 5px menjadi 0. 
+     Karena nav sekarang memiliki width 100% dari area kartu (bukan dari total wrapper), 
+     right: 0 akan menempatkannya tepat di batas kanan area kartu yang terlihat. */
+  right: 0;
+}
+
+/* --- Gaya untuk Modal/Lightbox (Fitur Zoom) --- */
+.modal {
+  display: none; /* Tersembunyi secara default */
+  position: fixed;
+  z-index: 200; /* Harus lebih tinggi dari elemen lain */
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9); /* Latar belakang hitam transparan */
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  max-height: 90vh;
+  object-fit: contain; /* Memastikan gambar pas tanpa terpotong */
+  border-radius: 8px;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+#modalCaption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  z-index: 201;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .modal-content {
+    width: 100%;
+  }
+}
