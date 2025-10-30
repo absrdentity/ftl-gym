@@ -13,7 +13,9 @@
       <ul>
         <li><a href="/" class="home-link active">Home</a></li>
         <li>
+          {% if not session.member %}
           <a href="/membership" class="membership-link">Membership</a>
+          {% endif %}
         </li>
         <li><a href="/our-clubs" class="clubs-link">Our Clubs</a></li>
       </ul>
@@ -21,7 +23,7 @@
 
     {% if session.member %}
     <div class="dropdown">
-      <a href="#" class="dropdown-toggle" id="userDropdown">
+      <a href="#" id="userDropdown">
         {{ session.member.name }}
         <i class="bi bi-caret-down-fill"></i>
       </a>
@@ -29,10 +31,11 @@
         <li>
           <a
             href="{{ url_for('member_home', name=session.member.name, package=session.member.package, email=session.member.email, phone=session.member.phone) }}"
+            class="text-dark"
             >Profile</a
           >
         </li>
-        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        <li><a href="{{ url_for('logout') }}" class="text-dark">Logout</a></li>
       </ul>
     </div>
     {% else %}
@@ -71,7 +74,9 @@
     >
       Not Just a Gym — It's Your Lifestyle Upgrade
     </p>
+    {% if not session.member %}
     <a href="/join" class="btn-register">Register Now</a>
+    {% endif %}
   </div>
 
   <div class="slider-nav">
@@ -98,7 +103,11 @@
           ensures a full refund of your unused membership period and Personal
           Training sessions — because your trust matters most.
         </p>
+        {% if not session.member %}
         <a href="/join" class="btn-join-guarantee">Join Now</a>
+        {% else %}
+        <a href="/member_home" class="btn-join-guarantee">Check Your Profile</a>
+        {% endif %}
       </div>
     </section>
 
@@ -183,7 +192,9 @@
           Every session is guided by trainers with trusted national and
           international certifications.
         </p>
+        {% if not session.member %}
         <a href="/join" class="btn-join trainer-join-btn">Join Now</a>
+        {% endif %}
       </div>
     </div>
 
@@ -683,9 +694,6 @@
       }, 1200); // Dipercepat menjadi 1 detik
     }
 
-    // Navigasi manual untuk slider baru
-    // Meskipun kursor (panah) dihapus dari HTML/CSS, kode ini dipertahankan
-    // agar logika auto-slide dan perhitungan indeks tetap utuh.
     if (workoutNext) {
       workoutNext.addEventListener("click", () => {
         clearInterval(workoutInterval);

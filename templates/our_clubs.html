@@ -47,7 +47,9 @@
           <ul>
             <li><a href="/" class="home-link">Home</a></li>
             <li>
-              <a href="/membership" class="membership-link">Membership</a>
+              {% if not session.member %}
+                <a href="/membership" class="membership-link">Membership</a>
+              {% endif %}
             </li>
             <li>
               <a href="/our-clubs" class="clubs-link active">Our Clubs</a>
@@ -57,13 +59,13 @@
 
         {% if session.member %}
           <div class="dropdown">
-            <a href="#" class="dropdown-toggle" id="userDropdown">
+            <a href="#" id="userDropdown">
               {{ session.member.name }}
               <i class="bi bi-caret-down-fill"></i>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="{{ url_for('member_home', name=session.member.name, package=session.member.package, email=session.member.email, phone=session.member.phone) }}">Profile</a></li>
-              <li><a href="{{ url_for('logout') }}">Logout</a></li>
+              <li><a href="{{ url_for('member_home', name=session.member.name, package=session.member.package, email=session.member.email, phone=session.member.phone) }}" class="text-dark">Profile</a></li>
+              <li><a href="{{ url_for('logout') }}" class="text-dark">Logout</a></li>
             </ul>
           </div>
         {% else %}
